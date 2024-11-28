@@ -1,0 +1,210 @@
+---
+
+---
+
+<div class="ioc-analyzer">
+	<form id="ioc-form" class="form">
+		<div class="input-group">
+			<label for="ioc" class="label">
+				Introduce un IoC (IP, Hash, Email o Dominio)
+			</label>
+			<input
+				id="ioc"
+				type="text"
+				placeholder="8.8.8.8, test@example.com, 44d88612fea8a8f36de82e1278abb02f, etc"
+				required
+				class="input"
+			/>
+		</div>
+		<button type="submit" class="button"> Analizar </button>
+	</form>
+	<div id="result" class="result hidden">
+		<h2 class="result-title">Analysis Result</h2>
+		<div class="result-grid">
+			<div id="result-content-1" class="result-card">
+				<h3 class="result-card-title">API 1</h3>
+				<pre class="result-content"></pre>
+			</div>
+			<div id="result-content-2" class="result-card">
+				<h3 class="result-card-title">API 2</h3>
+				<pre class="result-content"></pre>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	.ioc-analyzer {
+		margin: auto;
+		padding: 2rem;
+		width: 800px;
+		max-width: calc(100% - 2rem);
+		color: white;
+		font-size: 20px;
+		line-height: 1.6;
+	}
+	.principal-title-text {
+		font-size: 3rem;
+		font-weight: 700;
+		line-height: 1;
+		text-align: center;
+		margin-bottom: 1.5em;
+	}
+	.principal-title-text-gradient {
+		background-image: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
+	}
+	.form {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		margin-bottom: 2rem;
+	}
+	.input-group {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+	.label {
+		font-size: 0.9rem;
+		color: rgb(var(--accent-light));
+	}
+	.input {
+		padding: 0.5rem 1rem;
+		font-size: 1rem;
+		border: 1px solid rgba(var(--accent-light), 0.2);
+		border-radius: 0.25rem;
+		background-color: rgba(var(--accent-dark), 0.1);
+		color: white;
+	}
+	.button {
+		padding: 0.5rem 1rem;
+		font-size: 1rem;
+		font-weight: 600;
+		color: rgb(34, 34, 56);
+		background-image: var(--accent-gradient);
+		background-size: 200%;
+		background-position: 0%;
+		border: none;
+		border-radius: 0.25rem;
+		cursor: pointer;
+		transition: background-position 0.3s ease-in-out;
+	}
+	.button:hover {
+		background-position: 100%;
+	}
+	.result {
+		margin-top: 2rem;
+	}
+	.result-title {
+		font-size: 1.5rem;
+		font-weight: 600;
+		margin-bottom: 1rem;
+		color: rgb(var(--accent-light));
+	}
+	.result-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 1rem;
+	}
+	.result-card {
+		background-color: rgba(var(--accent-dark), 0.2);
+		border-radius: 0.5rem;
+		padding: 1rem;
+	}
+	.result-card-title {
+		font-size: 1.2rem;
+		font-weight: 600;
+		margin-bottom: 0.5rem;
+		color: rgb(var(--accent-light));
+	}
+	.result-content {
+		font-family: "Menlo", "Monaco", "Lucida Console", "Liberation Mono",
+			"DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New",
+			monospace;
+		font-size: 0.9rem;
+		white-space: pre-wrap;
+		word-break: break-all;
+	}
+	.hidden {
+		display: none;
+	}
+</style>
+
+<script type="module">
+	const form = document.querySelector("#ioc-form");
+	const resultDiv = document.querySelector("#result");
+	const resultContent1 = document.querySelector(
+		"#result-content-1 .result-content",
+	);
+	const resultContent2 = document.querySelector(
+		"#result-content-2 .result-content",
+	);
+
+	form.addEventListener("submit", async (e) => {
+		e.preventDefault();
+		const iocInput = document.querySelector("#ioc");
+		const ioc = iocInput.value;
+
+		try {
+			// Determine IoC type
+			const typeResponse = await fetch(`/api/type?ioc=${ioc}`);
+			const typeData = await typeResponse.json();
+
+			if (typeData.error) {
+				throw new Error(typeData.error);
+			}
+
+			// Analyze IoC
+			const analyzeResponse = await fetch(
+				`/api/analyze/${typeData.type}?ioc=${encodeURIComponent(ioc)}`,
+			);
+			const analyzeData = await analyzeResponse.json();
+
+			// Display results
+			resultDiv.classList.remove("hidden");
+
+			if (typeData.type === "ip" || typeData.type === "domain") {
+				resultContent1.textContent = JSON.stringify(
+					analyzeData.virustotal,
+					null,
+					2,
+				);
+				resultContent2.textContent = JSON.stringify(
+					typeData.type === "ip"
+						? analyzeData.abuseipdb
+						: analyzeData.otx,
+					null,
+					2,
+				);
+			} else if (typeData.type === "email") {
+				resultContent1.textContent = JSON.stringify(
+					analyzeData.emailrep,
+					null,
+					2,
+				);
+				resultContent2.textContent = JSON.stringify(
+					analyzeData.haveibeenpwned,
+					null,
+					2,
+				);
+			} else if (typeData.type === "hash") {
+				resultContent1.textContent = JSON.stringify(
+					analyzeData.virustotal,
+					null,
+					2,
+				);
+				resultContent2.textContent = JSON.stringify(
+					analyzeData.filescan,
+					null,
+					2,
+				);
+			}
+		} catch (error) {
+			alert(`Error: ${error.message}`);
+		}
+	});
+</script>
