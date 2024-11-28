@@ -49,14 +49,8 @@ export async function analyzeHash(hash: string) {
     console.log(polyswarmData)
 
     return {
-        /*virustotal: {
-            malicious: virustotalData.data.attributes.last_analysis_stats.malicious,
-            suspicious: virustotalData.data.attributes.last_analysis_stats.suspicious,
-        },*/
-        /*filescan: {
-            threatLevel: filescanData.scan_results.threat_level,
-            threatNames: filescanData.scan_results.threat_names,
-        },*/
+        /*virustotal: virustotalData,*/
+        /*polyswarm: polyswarmData,*/
     };
 }
 

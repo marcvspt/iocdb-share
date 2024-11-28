@@ -6,8 +6,8 @@ export { renderers } from '../../../renderers.mjs';
 const API_VT_IP = "https://www.virustotal.com/api/v3/ip_addresses";
 const API_ABUSEIPDB = "https://api.abuseipdb.com/api/v2/check?ipAddress";
 async function analyzeIP(ip) {
-  const virustotalKey = undefined                                  ;
-  const abuseipdbKey = undefined                                 ;
+  const virustotalKey = "7f14b7b5ffc3f4eb0210680089289014119dfc012c9e9e35618537fc3ed2b589";
+  const abuseipdbKey = "0a9c31011f3c300938fd074d3e66a04f1500b9dc6dfec55bd66385c4ecf9ed870817cb24da25fcf5";
   const urlVTIPInfo = `${API_VT_IP}/${ip}`;
   const virustotalResponse = await fetch(urlVTIPInfo, {
     headers: {
@@ -24,22 +24,16 @@ async function analyzeIP(ip) {
   const virustotalData = await virustotalResponse.json();
   const abuseipdbData = await abuseipdbResponse.json();
   return {
-    virustotal: {
-      malicious: virustotalData.data.attributes.last_analysis_stats.malicious,
-      suspicious: virustotalData.data.attributes.last_analysis_stats.suspicious
-    },
-    abuseipdb: {
-      country: abuseipdbData.data.countryCode,
-      isp: abuseipdbData.data.isp
-    }
+    virustotal: virustotalData,
+    abuseipdb: abuseipdbData
   };
 }
 
 const API_VT_DOMAIN = "https://www.virustotal.com/api/v3/domains";
 const API_OTX_DOMAIN = "https://otx.alienvault.com/api/v1/indicators/domain";
 async function analyzeDomain(domain) {
-  const virustotalKey = undefined                                  ;
-  const otxKey = undefined                           ;
+  const virustotalKey = "7f14b7b5ffc3f4eb0210680089289014119dfc012c9e9e35618537fc3ed2b589";
+  const otxKey = "ffa8e3ed8bf53bc083cb5038b86ed53118c92b02981c036eb99817c76c68ee17";
   const urlVTDomainInfo = `${API_VT_DOMAIN}/${domain}`;
   const virustotalResponse = await fetch(urlVTDomainInfo, {
     headers: {
@@ -55,13 +49,8 @@ async function analyzeDomain(domain) {
   const virustotalData = await virustotalResponse.json();
   const otxData = await otxResponse.json();
   return {
-    virustotal: {
-      malicious: virustotalData.data.attributes.last_analysis_stats.malicious,
-      suspicious: virustotalData.data.attributes.last_analysis_stats.suspicious
-    },
-    otx: {
-      pulseCount: otxData.pulse_info.count
-    }
+    virustotal: virustotalData,
+    otx: otxData
   };
 }
 
@@ -87,8 +76,8 @@ function checkHashType(hash) {
   return "N/A";
 }
 async function analyzeHash(hash) {
-  const virustotalKey = undefined                                  ;
-  const polyswarmKey = undefined                                 ;
+  const virustotalKey = "7f14b7b5ffc3f4eb0210680089289014119dfc012c9e9e35618537fc3ed2b589";
+  const polyswarmKey = "4fe87b6744b162377c8a65bec5b7e5c8";
   const urlVTFilehashInfo = `${API_VT_FILEHASH}/${hash}`;
   const virustotalResponse = await fetch(urlVTFilehashInfo, {
     headers: {
@@ -107,14 +96,8 @@ async function analyzeHash(hash) {
   console.log(virustotalData);
   console.log(polyswarmData);
   return {
-    /*virustotal: {
-        malicious: virustotalData.data.attributes.last_analysis_stats.malicious,
-        suspicious: virustotalData.data.attributes.last_analysis_stats.suspicious,
-    },*/
-    /*filescan: {
-        threatLevel: filescanData.scan_results.threat_level,
-        threatNames: filescanData.scan_results.threat_names,
-    },*/
+    /*virustotal: virustotalData,*/
+    /*polyswarm: polyswarmData,*/
   };
 }
 

@@ -25,14 +25,8 @@ export async function analyzeIP(ip: string) {
 
 
     return {
-        virustotal: {
-            malicious: virustotalData.data.attributes.last_analysis_stats.malicious,
-            suspicious: virustotalData.data.attributes.last_analysis_stats.suspicious,
-        },
-        abuseipdb: {
-            country: abuseipdbData.data.countryCode,
-            isp: abuseipdbData.data.isp,
-        },
+        virustotal: virustotalData,
+        abuseipdb: abuseipdbData,
     };
 }
 

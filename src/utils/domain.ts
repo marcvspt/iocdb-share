@@ -24,13 +24,8 @@ export async function analyzeDomain(domain: string) {
     const otxData = await otxResponse.json();
 
     return {
-        virustotal: {
-            malicious: virustotalData.data.attributes.last_analysis_stats.malicious,
-            suspicious: virustotalData.data.attributes.last_analysis_stats.suspicious,
-        },
-        otx: {
-            pulseCount: otxData.pulse_info.count,
-        },
+        virustotal: virustotalData,
+        otx: otxData,
     };
 }
 
