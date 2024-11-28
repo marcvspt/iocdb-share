@@ -1,5 +1,5 @@
 export async function GET({ request }: { request: Request }) {
-    const { url } = await request;
+    const { url } = request;
     const urlObject = new URL(url);
     const ioc = urlObject.searchParams.get("ioc")
 
