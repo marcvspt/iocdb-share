@@ -1,0 +1,14 @@
+[
+    {
+        "error": {
+            "code": "NotFoundError",
+            "message": "Domain \"noexistentdomain.com\" not found"
+        }
+    },
+    {
+        "error": {
+            "code": "InvalidArgumentError",
+            "message": "Domain \"b'noexistentdomain.coms'\" is not a valid domain pattern"
+        }
+    }
+]

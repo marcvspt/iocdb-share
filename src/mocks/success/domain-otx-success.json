@@ -1,0 +1,99 @@
+{
+    "sections": [
+        "general",
+        "geo",
+        "url_list",
+        "passive_dns",
+        "malware",
+        "whois",
+        "http_scans"
+    ],
+    "whois": "http://whois.domaintools.com/abibut.com",
+    "alexa": "http://www.alexa.com/siteinfo/abibut.com",
+    "indicator": "abibut.com",
+    "type": "domain",
+    "type_title": "Domain",
+    "validation": [],
+    "base_indicator": {
+        "id": 4008096811,
+        "indicator": "abibut.com",
+        "type": "domain",
+        "title": "",
+        "description": "",
+        "content": "",
+        "access_type": "public",
+        "access_reason": ""
+    },
+    "pulse_info": {
+        "count": 1,
+        "pulses": [
+            {
+                "id": "65fd23f8dc3d84e2bbff9821",
+                "name": "sms scam campaign (2024)",
+                "description": "scam based on sms. new pulse for 2024 data, because the old one was too big.",
+                "modified": "2024-11-28T02:14:06.442000",
+                "created": "2024-03-22T06:23:52.630000",
+                "tags": [
+                    "sms",
+                    "scam"
+                ],
+                "references": [],
+                "public": 1,
+                "adversary": "",
+                "targeted_countries": [],
+                "malware_families": [],
+                "attack_ids": [],
+                "industries": [],
+                "TLP": "white",
+                "cloned_from": null,
+                "export_count": 10,
+                "upvotes_count": 0,
+                "downvotes_count": 0,
+                "votes_count": 0,
+                "locked": false,
+                "pulse_source": "web",
+                "validator_count": 0,
+                "comment_count": 0,
+                "follower_count": 0,
+                "vote": 0,
+                "author": {
+                    "username": "36b4b9b5",
+                    "id": "188952",
+                    "avatar_url": "https://otx.alienvault.com/assets/images/default-avatar.png",
+                    "is_subscribed": false,
+                    "is_following": false
+                },
+                "indicator_type_counts": {
+                    "hostname": 291,
+                    "domain": 5243
+                },
+                "indicator_count": 5534,
+                "is_author": false,
+                "is_subscribing": null,
+                "subscriber_count": 43,
+                "modified_text": "1 hour ago ",
+                "is_modified": true,
+                "groups": [],
+                "in_group": false,
+                "threat_hunter_scannable": false,
+                "threat_hunter_has_agents": 1,
+                "related_indicator_type": "domain",
+                "related_indicator_is_active": 1
+            }
+        ],
+        "references": [],
+        "related": {
+            "alienvault": {
+                "adversary": [],
+                "malware_families": [],
+                "industries": []
+            },
+            "other": {
+                "adversary": [],
+                "malware_families": [],
+                "industries": []
+            }
+        }
+    },
+    "false_positive": []
+}

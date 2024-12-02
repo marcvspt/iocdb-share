@@ -1,0 +1,341 @@
+{
+    "has_more": false,
+    "limit": 50,
+    "result": [
+        {
+            "artifact_id": "70849046016348324",
+            "assertions": [
+                {
+                    "author": "82454256513644328",
+                    "author_name": "SecureAge",
+                    "bid": "15000000000000000",
+                    "engine": {
+                        "description": "The SecureAge APEX Engine harnesses the power of artificial intelligence (AI) to take on the threats of today and tomorrow. Leveraging on the power of big data, the APEX engine goes beyond traditional scanners by effectively and reliably spotting malicious patterns to allow for quick decisions based on prior experience. It can adaptively update its knowledge against newer and unseen malware variants that may attempt to infect endpoints during an outbreak. This approach makes it incredibly faster at detecting zero-day threats while having minimal footprint regarding performance and disk space when compared to traditional anti-malware engines.",
+                        "name": "SecureAge"
+                    },
+                    "mask": true,
+                    "metadata": {
+                        "malware_family": "EICAR Anti-Virus Test File",
+                        "product": "secureage",
+                        "scanner": {
+                            "definition_version": "6.223",
+                            "engine_version": "5.5.1"
+                        }
+                    },
+                    "verdict": true
+                },
+                {
+                    "author": "45003009427661603",
+                    "author_name": "Qihoo 360",
+                    "bid": "15000000000000000",
+                    "engine": {
+                        "description": "Qihoo 360 is the largest provider of antivirus, Internet and mobile security products in China. QVM (Qihoo Support Vector Machine) is used as a basis for a detection algorithm which is automatically enhanced and updated with new malware samples submitted by users to servers. Program files that do not appear on our blacklist and whitelist are scanned using QVM, and any \u201chits\u201d presumed to be malicious would be removed or quarantined.",
+                        "name": "Qihoo 360"
+                    },
+                    "mask": true,
+                    "metadata": {
+                        "malware_family": "qex.eicar.gen.gen",
+                        "product": "Qihoo",
+                        "scanner": {
+                            "signatures_version": "2022-10-04 10:25"
+                        }
+                    },
+                    "verdict": true
+                },
+                {
+                    "author": "33148585565356292",
+                    "author_name": "Jiangmin",
+                    "bid": "15000000000000000",
+                    "engine": {
+                        "description": "Specializes in malicious files and business documents scanning",
+                        "name": "Jiangmin"
+                    },
+                    "mask": true,
+                    "metadata": {
+                        "malware_family": "EICAR-Test-File",
+                        "product": "jiangmin",
+                        "scanner": {
+                            "signatures_version": "16.0.100",
+                            "vendor_vendor": "1.0.0.0",
+                            "version": "0.0.1"
+                        }
+                    },
+                    "verdict": true
+                },
+                {
+                    "author": "21584326519540048",
+                    "author_name": "XVirus",
+                    "bid": "9350000000000000",
+                    "engine": {
+                        "description": "Xvirus is a project that started in 2010. Our objective is to provide to consumers with simple but powerful products to keep their computers protected, clean and at top performance.",
+                        "name": "XVirus"
+                    },
+                    "mask": true,
+                    "metadata": {
+                        "product": "xvirus",
+                        "scanner": {
+                            "vendor_version": "3.0.2.0"
+                        }
+                    },
+                    "verdict": true
+                },
+                {
+                    "author": "32946093848101608",
+                    "author_name": "Filseclab",
+                    "bid": "15000000000000000",
+                    "engine": {
+                        "description": "",
+                        "name": "Filseclab"
+                    },
+                    "mask": true,
+                    "metadata": {
+                        "malware_family": "Virus.44D88612FEA8A8F3",
+                        "product": "filseclab",
+                        "scanner": {
+                            "engine_version": "1.0.2.2108",
+                            "signatures_timestamp": "Tuesday, March 29, 2022 11:26:41 PM",
+                            "signatures_version": "34.3.21873"
+                        }
+                    },
+                    "verdict": true
+                },
+                {
+                    "author": "84695705209944120",
+                    "author_name": "Crowdstrike Falcon ML",
+                    "bid": "0",
+                    "engine": {
+                        "description": "CrowdStrike Falcon ML protects customers against all cyber attacks, using sophisticated signatureless artificial intelligence/machine learning and Indicator of Attack (IOA) based threat prevention to stop known and unknown threats in real-time.",
+                        "name": "Crowdstrike Falcon ML"
+                    },
+                    "mask": true,
+                    "metadata": {
+                        "product": "crowdstrike-falcon",
+                        "scanner": {
+                            "environment": {
+                                "architecture": "x86_64",
+                                "operating_system": "Linux"
+                            },
+                            "vendor_version": "2",
+                            "version": "0.0.1"
+                        },
+                        "vendor_api_version": "2",
+                        "vendor_endpoint": "https://www.hybrid-analysis.com/api/v2/quick-scan"
+                    },
+                    "verdict": null
+                },
+                {
+                    "author": "14106784725859115",
+                    "author_name": "DrWeb",
+                    "bid": "15000000000000000",
+                    "engine": {
+                        "description": "A anti-virus offering preventive protection against the latest active threats, targeted attacks, and infiltration attempts that take advantage of vulnerabilities",
+                        "name": "DrWeb"
+                    },
+                    "mask": true,
+                    "metadata": {
+                        "malware_family": "EICAR Test File (NOT a Virus!)",
+                        "product": "drweb",
+                        "scanner": {
+                            "environment": {
+                                "architecture": "x86_64",
+                                "operating_system": "Linux"
+                            },
+                            "signatures_version": "0DF993828B3C9A74036247DA43EAA63C, 2024-Nov-25 23:51:32",
+                            "vendor_version": "7.00.65.05230",
+                            "version": "0.0.1"
+                        }
+                    },
+                    "verdict": true
+                },
+                {
+                    "author": "55328652711226799",
+                    "author_name": "Alibaba",
+                    "bid": "3700000000000000",
+                    "engine": {
+                        "description": "Engine based on cloud computing, big data technologies and a database with massive collection of confirmed malware and safe files. Multiple subsystems included, such as preprocessing, static analysis, dynamic analysis, and counterfeit software detection.",
+                        "name": "Alibaba"
+                    },
+                    "mask": true,
+                    "metadata": {
+                        "comments": [
+                            "REPORT_TYPE=eicar"
+                        ],
+                        "malware_family": "Dos.EICAR-test-file",
+                        "product": "Alibaba",
+                        "scanner": {
+                            "signatures_version": "20180921112649",
+                            "vendor_version": "0.2.0.3"
+                        }
+                    },
+                    "verdict": true
+                },
+                {
+                    "author": "44916051751992551",
+                    "author_name": "NanoAV",
+                    "bid": "15000000000000000",
+                    "engine": {
+                        "description": "Russian advanced cyber security threat protection with high speed comprehensive threat scanning that provides protection from all types of malware and includes real-time file and network protection and remediation.",
+                        "name": "NanoAV"
+                    },
+                    "mask": true,
+                    "metadata": {
+                        "malware_family": "Marker.Dos.EICAR-Test-File.dyb",
+                        "product": "NANO Antivirus",
+                        "scanner": {
+                            "signatures_version": "0.14.48.26934",
+                            "vendor_version": "1.0.146.91124"
+                        }
+                    },
+                    "verdict": true
+                },
+                {
+                    "author": "61602204071113521",
+                    "author_name": "RedDrip APT Scanner - RAS",
+                    "bid": "15000000000000000",
+                    "engine": {
+                        "description": "RAS can scan files then determine APT group who is using the files for attacking purpose.To achieve that goal, RAS engine uses custom pattern file which contains malware pattern and its corresponding APT Group. The knowledge behind pattern file is from daily APT tracking conducted by RedDrip Team researchers and analysis system.",
+                        "name": "RedDrip APT Scanner - RAS"
+                    },
+                    "mask": true,
+                    "metadata": {
+                        "comments": [
+                            "THREAT_NAME=THREAT_EICAR_TEST"
+                        ],
+                        "malware_family": "TestFile.Win32.Eicar.Gen",
+                        "product": "reddrip"
+                    },
+                    "verdict": true
+                },
+                {
+                    "author": "71533258252366147",
+                    "author_name": "Ikarus",
+                    "bid": "15000000000000000",
+                    "engine": {
+                        "description": "Protects effectively against viruses, trojans, spyware, spam, and malware that threaten the security of your devices and data.",
+                        "name": "Ikarus"
+                    },
+                    "mask": true,
+                    "metadata": {
+                        "malware_family": "EICAR-Test-File",
+                        "product": "ikarus",
+                        "scanner": {
+                            "environment": {
+                                "architecture": "x86_64",
+                                "operating_system": "Linux"
+                            },
+                            "version": "0.0.1"
+                        },
+                        "signatures_version": "25.11.2024 19:20:24 (107644)",
+                        "vendor_version": "6.3.23.0"
+                    },
+                    "verdict": true
+                },
+                {
+                    "author": "71222207979378669",
+                    "author_name": "ClamAV",
+                    "bid": "15000000000000000",
+                    "engine": {
+                        "description": "ClamAV is an open source, signature-based, anti-virus engine capable of scanning a wide variety of common file types.",
+                        "name": "ClamAV"
+                    },
+                    "mask": true,
+                    "metadata": {
+                        "malware_family": "Win.Test.EICAR_HDB-1",
+                        "product": "clamav",
+                        "scanner": {
+                            "environment": {
+                                "architecture": "x86_64",
+                                "operating_system": "Linux"
+                            },
+                            "vendor_version": "ClamAV 1.3.1/27315/Sun Jun 23 08:23:58 2024",
+                            "version": "0.0.1"
+                        }
+                    },
+                    "verdict": true
+                }
+            ],
+            "bounty_state": 3,
+            "community": "mainnet1",
+            "country": "AU",
+            "created": "2024-11-26T01:21:58.057423+00:00",
+            "detections": {
+                "benign": 0,
+                "malicious": 11,
+                "total": 11
+            },
+            "extended_type": "EICAR virus test files",
+            "failed": false,
+            "filename": "eicar.txt",
+            "first_seen": "2019-05-17T01:14:26.512624+00:00",
+            "id": "70849046016348324",
+            "last_scanned": "2024-11-26T01:21:58.057423+00:00",
+            "last_seen": "2024-11-26T01:21:58.057423+00:00",
+            "md5": "44d88612fea8a8f36de82e1278abb02f",
+            "metadata": [
+                {
+                    "created": "2024-11-26T01:22:36.495367+00:00",
+                    "tool": "polyunite",
+                    "tool_metadata": {
+                        "labels": [
+                            "virus",
+                            "nonmalware"
+                        ],
+                        "malware_family": "EICAR",
+                        "operating_system": []
+                    },
+                    "updated": "2024-11-26T01:22:36.495367+00:00"
+                },
+                {
+                    "created": "2024-11-26T01:22:00.268715+00:00",
+                    "tool": "hash",
+                    "tool_metadata": {
+                        "md5": "44d88612fea8a8f36de82e1278abb02f",
+                        "sha1": "3395856ce81f2b7382dee72602f798b642f14140",
+                        "sha256": "275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f",
+                        "sha3_256": "8b4c4e204a8a039198e292d2291f4c451d80e4c38bf0cc04ad3841fea8755bd8",
+                        "sha3_512": "a20290c6ebf01dc5182bb57718250f61ab11b418466714632a7d1474a02849641f7b78e4093e19ad12fdbedbe02f3bec4ca3ec3235557e82ab5ac02d061e7007",
+                        "sha512": "cc805d5fab1fd71a4ab352a9c533e65fb2d5b885518f4e565e68847223b8e6b85cb48f3afad842726d99239c9e36505c64b0dc9a061d9e507d833277ada336ab",
+                        "ssdeep": "3:a+JraNvsgzsVqSwHq9:tJuOgzsko",
+                        "tlsh": "41a022003b0eee2ba20b00200032e8b00808020e2ce00a3820a020b8c83308803ec228"
+                    },
+                    "updated": "2024-11-26T01:22:00.696753+00:00"
+                },
+                {
+                    "created": "2024-11-26T01:22:00.268715+00:00",
+                    "tool": "exiftool",
+                    "tool_metadata": {
+                        "directory": "/tmp",
+                        "exiftoolversion": 12.76,
+                        "fileaccessdate": "2024:11:26 01:22:00+00:00",
+                        "fileinodechangedate": "2024:11:26 01:22:00+00:00",
+                        "filemodifydate": "2024:11:26 01:22:00+00:00",
+                        "filename": "tmp0i3q8ogu",
+                        "filepermissions": "-rw-r--r--",
+                        "filesize": "68 bytes",
+                        "filetype": "TXT",
+                        "filetypeextension": "txt",
+                        "linecount": 1,
+                        "mimeencoding": "us-ascii",
+                        "mimetype": "text/plain",
+                        "newlines": "(none)",
+                        "sourcefile": "/tmp/tmp0i3q8ogu",
+                        "wordcount": 1
+                    },
+                    "updated": "2024-11-26T01:22:00.884984+00:00"
+                }
+            ],
+            "mimetype": "text/plain",
+            "permalink": "https://polyswarm.network/scan/results/file/275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f/70849046016348324",
+            "polyscore": 0.9999993639579372,
+            "result": null,
+            "sha1": "3395856ce81f2b7382dee72602f798b642f14140",
+            "sha256": "275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f",
+            "size": 68,
+            "type": "FILE",
+            "upload_url": "https://s3.us-east-2.amazonaws.com/ps-storage-prodv2-instances/e5/c8/5a/e5c85a29-ba18-478f-9198-fca58cc1d44c?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARD7S6WCVBXF6ZSO5%2F20241126%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241126T012158Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=0f14ca5f4e969028fc5b90613bf4584c1c771ac0e60e944acdf3bf3394dab620",
+            "votes": [],
+            "window_closed": true
+        }
+    ],
+    "status": "OK"
+}
