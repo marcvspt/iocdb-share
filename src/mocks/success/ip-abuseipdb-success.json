@@ -1,0 +1,283 @@
+{
+    "data": {
+        "ipAddress": "8.8.8.8",
+        "isPublic": true,
+        "ipVersion": 4,
+        "isWhitelisted": true,
+        "abuseConfidenceScore": 0,
+        "countryCode": "US",
+        "usageType": "Content Delivery Network",
+        "isp": "Google LLC",
+        "domain": "google.com",
+        "hostnames": [
+            "dns.google"
+        ],
+        "isTor": false,
+        "countryName": "United States of America",
+        "totalReports": 25,
+        "numDistinctUsers": 14,
+        "lastReportedAt": "2024-12-01T12:46:37+00:00",
+        "reports": [
+            {
+                "reportedAt": "2024-12-01T12:46:37+00:00",
+                "comment": "Brute-Force Telnet (Port 23,2323)",
+                "categories": [
+                    18
+                ],
+                "reporterId": 18163,
+                "reporterCountryCode": "US",
+                "reporterCountryName": "United States of America"
+            },
+            {
+                "reportedAt": "2024-11-29T15:50:25+00:00",
+                "comment": "Detected potential Nmap/Masscan scan.",
+                "categories": [
+                    18
+                ],
+                "reporterId": 176149,
+                "reporterCountryCode": "NL",
+                "reporterCountryName": "Netherlands"
+            },
+            {
+                "reportedAt": "2024-11-28T18:55:08+00:00",
+                "comment": "TeamViewer RMM - DNS (Response)",
+                "categories": [
+                    15
+                ],
+                "reporterId": 27827,
+                "reporterCountryCode": "CA",
+                "reporterCountryName": "Canada"
+            },
+            {
+                "reportedAt": "2024-11-24T11:30:34+00:00",
+                "comment": "[rede-184-149] 11/24/2024-08:30:34.390323, 8.8.8.8, Protocol: 17, POSSBL SCAN FRAG (NMAP -f)",
+                "categories": [
+                    14
+                ],
+                "reporterId": 131395,
+                "reporterCountryCode": "BR",
+                "reporterCountryName": "Brazil"
+            },
+            {
+                "reportedAt": "2024-11-24T10:08:29+00:00",
+                "comment": "[rede-184-149] 11/24/2024-07:07:48.284206, 8.8.8.8, Protocol: 17, POSSBL SCAN FRAG (NMAP -f)",
+                "categories": [
+                    14
+                ],
+                "reporterId": 131395,
+                "reporterCountryCode": "BR",
+                "reporterCountryName": "Brazil"
+            },
+            {
+                "reportedAt": "2024-11-24T08:16:13+00:00",
+                "comment": "[rede-184-149] 11/24/2024-05:16:10.458663, 8.8.8.8, Protocol: 17, POSSBL SCAN FRAG (NMAP -f)",
+                "categories": [
+                    14
+                ],
+                "reporterId": 131395,
+                "reporterCountryCode": "BR",
+                "reporterCountryName": "Brazil"
+            },
+            {
+                "reportedAt": "2024-11-21T20:26:34+00:00",
+                "comment": "Brute-Force Telnet (Port 23,2323)",
+                "categories": [
+                    18
+                ],
+                "reporterId": 18163,
+                "reporterCountryCode": "US",
+                "reporterCountryName": "United States of America"
+            },
+            {
+                "reportedAt": "2024-11-21T17:15:18+00:00",
+                "comment": "ConnectWise RMM - DNS (Response)",
+                "categories": [
+                    15
+                ],
+                "reporterId": 27827,
+                "reporterCountryCode": "CA",
+                "reporterCountryName": "Canada"
+            },
+            {
+                "reportedAt": "2024-11-20T11:00:54+00:00",
+                "comment": "FortiGate detected brute force login from IP 8.8.8.8",
+                "categories": [
+                    18
+                ],
+                "reporterId": 156039,
+                "reporterCountryCode": "CH",
+                "reporterCountryName": "Switzerland"
+            },
+            {
+                "reportedAt": "2024-11-20T10:09:34+00:00",
+                "comment": "Suspicious brute force attempt.",
+                "categories": [
+                    18
+                ],
+                "reporterId": 174585,
+                "reporterCountryCode": "IN",
+                "reporterCountryName": "India"
+            },
+            {
+                "reportedAt": "2024-11-19T17:20:19+00:00",
+                "comment": "TeamViewer RMM - DNS (Response)",
+                "categories": [
+                    15
+                ],
+                "reporterId": 27827,
+                "reporterCountryCode": "CA",
+                "reporterCountryName": "Canada"
+            },
+            {
+                "reportedAt": "2024-11-18T21:39:54+00:00",
+                "comment": "action=deny srcip=8.8.8.8 srcname=dns.google srccountry=United States dstcountry=United States",
+                "categories": [
+                    15,
+                    18
+                ],
+                "reporterId": 15762,
+                "reporterCountryCode": "US",
+                "reporterCountryName": "United States of America"
+            },
+            {
+                "reportedAt": "2024-11-17T14:49:50+00:00",
+                "comment": "Detected denied connection attempts to port 53 from IP 8.8.8.8 on 2024-11-17T14:49:50Z UTC.\nAction: deny.\nCategories: Port Scan, Hacking.\nEvidence:\n- 2024-11-17T14:49:50Z UTC: Denied connection attempt from 8.8.8.8 to port 53.\nThis activity is consistent with the assigned abuse categories.\nNo PII is included in this report.",
+                "categories": [
+                    14,
+                    15
+                ],
+                "reporterId": 52060,
+                "reporterCountryCode": "US",
+                "reporterCountryName": "United States of America"
+            },
+            {
+                "reportedAt": "2024-11-13T15:17:46+00:00",
+                "comment": "Incoming Layer 7 Flood Detected",
+                "categories": [
+                    4,
+                    10
+                ],
+                "reporterId": 137188,
+                "reporterCountryCode": "DE",
+                "reporterCountryName": "Germany"
+            },
+            {
+                "reportedAt": "2024-11-13T10:37:11+00:00",
+                "comment": "",
+                "categories": [
+                    18,
+                    22
+                ],
+                "reporterId": 86138,
+                "reporterCountryCode": "IN",
+                "reporterCountryName": "India"
+            },
+            {
+                "reportedAt": "2024-11-11T23:57:44+00:00",
+                "comment": "Prueba de reporte",
+                "categories": [
+                    22
+                ],
+                "reporterId": 170565,
+                "reporterCountryCode": "MX",
+                "reporterCountryName": "Mexico"
+            },
+            {
+                "reportedAt": "2024-11-08T22:17:59+00:00",
+                "comment": "Nov  8 17:17:56 egress kernel: filter_IN_external_REJECT: IN=enp4s0 OUT= MAC=a0:36:9f:e7:16:2b:c4:ca:2b:5b:14:13:08:00 SRC=8.8.8.8 DST=73.244.51.57 LEN=125 TOS=0x00 PREC=0x00 TTL=120 ID=13701 PROTO=TCP SPT=443 DPT=56374 WINDOW=1050 RES=0x00 ACK PSH URGP=0 \nNov  8 17:17:56 egress kernel: filter_IN_external_REJECT: IN=enp4s0 OUT= MAC=a0:36:9f:e7:16:2b:c4:ca:2b:5b:14:13:08:00 SRC=8.8.8.8 DST=73.244.51.57 LEN=125 TOS=0x00 PREC=0x00 TTL=120 ID=13702 PROTO=TCP SPT=443 DPT=56374 WINDOW=1050 RES=0x00 ACK PSH URGP=0 \nNov  8 17:17:57 egress kernel: filter_IN_external_REJECT: IN=enp4s0 OUT= MAC=a0:36:9f:e7:16:2b:c4:ca:2b:5b:14:13:08:00 SRC=8.8.8.8 DST=73.244.51.57 LEN=125 TOS=0x00 PREC=0x00 TTL=120 ID=13703 PROTO=TCP SPT=443 DPT=56374 WINDOW=1050 RES=0x00 ACK PSH URGP=0 \n...",
+                "categories": [
+                    14,
+                    18
+                ],
+                "reporterId": 48089,
+                "reporterCountryCode": "US",
+                "reporterCountryName": "United States of America"
+            },
+            {
+                "reportedAt": "2024-11-08T16:51:54+00:00",
+                "comment": "Nov  8 11:51:27 egress kernel: filter_IN_external_REJECT: IN=enp4s0 OUT= MAC=a0:36:9f:e7:16:2b:c4:ca:2b:5b:14:13:08:00 SRC=8.8.8.8 DST=73.244.51.57 LEN=125 TOS=0x00 PREC=0x00 TTL=120 ID=61168 PROTO=TCP SPT=443 DPT=46560 WINDOW=1050 RES=0x00 ACK PSH URGP=0 \nNov  8 11:51:30 egress kernel: filter_IN_external_REJECT: IN=enp4s0 OUT= MAC=a0:36:9f:e7:16:2b:c4:ca:2b:5b:14:13:08:00 SRC=8.8.8.8 DST=73.244.51.57 LEN=125 TOS=0x00 PREC=0x00 TTL=121 ID=61169 PROTO=TCP SPT=443 DPT=46560 WINDOW=1050 RES=0x00 ACK PSH URGP=0 \nNov  8 11:51:52 egress kernel: filter_IN_external_REJECT: IN=enp4s0 OUT= MAC=a0:36:9f:e7:16:2b:c4:ca:2b:5b:14:13:08:00 SRC=8.8.8.8 DST=73.244.51.57 LEN=125 TOS=0x00 PREC=0x00 TTL=121 ID=61171 PROTO=TCP SPT=443 DPT=46560 WINDOW=1050 RES=0x00 ACK PSH URGP=0 \n...",
+                "categories": [
+                    14,
+                    18
+                ],
+                "reporterId": 48089,
+                "reporterCountryCode": "US",
+                "reporterCountryName": "United States of America"
+            },
+            {
+                "reportedAt": "2024-11-07T00:58:30+00:00",
+                "comment": "Nov  6 19:58:26 egress kernel: filter_IN_external_REJECT: IN=enp4s0 OUT= MAC=a0:36:9f:e7:16:2b:c4:ca:2b:5b:14:13:08:00 SRC=8.8.8.8 DST=73.244.51.57 LEN=125 TOS=0x00 PREC=0x00 TTL=121 ID=41959 PROTO=TCP SPT=443 DPT=46872 WINDOW=1050 RES=0x00 ACK PSH URGP=0 \nNov  6 19:58:27 egress kernel: filter_IN_external_REJECT: IN=enp4s0 OUT= MAC=a0:36:9f:e7:16:2b:c4:ca:2b:5b:14:13:08:00 SRC=8.8.8.8 DST=73.244.51.57 LEN=125 TOS=0x00 PREC=0x00 TTL=121 ID=41960 PROTO=TCP SPT=443 DPT=46872 WINDOW=1050 RES=0x00 ACK PSH URGP=0 \nNov  6 19:58:27 egress kernel: filter_IN_external_REJECT: IN=enp4s0 OUT= MAC=a0:36:9f:e7:16:2b:c4:ca:2b:5b:14:13:08:00 SRC=8.8.8.8 DST=73.244.51.57 LEN=125 TOS=0x00 PREC=0x00 TTL=120 ID=41961 PROTO=TCP SPT=443 DPT=46872 WINDOW=1050 RES=0x00 ACK PSH URGP=0 \n...",
+                "categories": [
+                    14,
+                    18
+                ],
+                "reporterId": 48089,
+                "reporterCountryCode": "US",
+                "reporterCountryName": "United States of America"
+            },
+            {
+                "reportedAt": "2024-11-06T06:01:13+00:00",
+                "comment": "Nov  6 01:00:49 egress kernel: filter_IN_external_REJECT: IN=enp4s0 OUT= MAC=a0:36:9f:e7:16:2b:c4:ca:2b:5b:14:13:08:00 SRC=8.8.8.8 DST=73.244.51.57 LEN=125 TOS=0x00 PREC=0x00 TTL=121 ID=34560 PROTO=TCP SPT=443 DPT=50688 WINDOW=1050 RES=0x00 ACK PSH URGP=0 \nNov  6 01:00:56 egress kernel: filter_IN_external_REJECT: IN=enp4s0 OUT= MAC=a0:36:9f:e7:16:2b:c4:ca:2b:5b:14:13:08:00 SRC=8.8.8.8 DST=73.244.51.57 LEN=125 TOS=0x00 PREC=0x00 TTL=57 ID=34561 PROTO=TCP SPT=443 DPT=50688 WINDOW=1050 RES=0x00 ACK PSH URGP=0 \nNov  6 01:01:11 egress kernel: filter_IN_external_REJECT: IN=enp4s0 OUT= MAC=a0:36:9f:e7:16:2b:c4:ca:2b:5b:14:13:08:00 SRC=8.8.8.8 DST=73.244.51.57 LEN=125 TOS=0x00 PREC=0x00 TTL=120 ID=34562 PROTO=TCP SPT=443 DPT=50688 WINDOW=1050 RES=0x00 ACK PSH URGP=0 \n...",
+                "categories": [
+                    14,
+                    18
+                ],
+                "reporterId": 48089,
+                "reporterCountryCode": "US",
+                "reporterCountryName": "United States of America"
+            },
+            {
+                "reportedAt": "2024-11-05T19:19:18+00:00",
+                "comment": "Nov  5 14:18:27 egress kernel: filter_IN_external_REJECT: IN=enp4s0 OUT= MAC=a0:36:9f:e7:16:2b:c4:ca:2b:5b:14:13:08:00 SRC=8.8.8.8 DST=73.244.51.57 LEN=125 TOS=0x00 PREC=0x00 TTL=120 ID=36432 PROTO=TCP SPT=443 DPT=50262 WINDOW=1050 RES=0x00 ACK PSH URGP=0 \nNov  5 14:18:34 egress kernel: filter_IN_external_REJECT: IN=enp4s0 OUT= MAC=a0:36:9f:e7:16:2b:c4:ca:2b:5b:14:13:08:00 SRC=8.8.8.8 DST=73.244.51.57 LEN=125 TOS=0x00 PREC=0x00 TTL=120 ID=36433 PROTO=TCP SPT=443 DPT=50262 WINDOW=1050 RES=0x00 ACK PSH URGP=0 \nNov  5 14:19:17 egress kernel: filter_IN_external_REJECT: IN=enp4s0 OUT= MAC=a0:36:9f:e7:16:2b:c4:ca:2b:5b:14:13:08:00 SRC=8.8.8.8 DST=73.244.51.57 LEN=125 TOS=0x00 PREC=0x00 TTL=121 ID=36435 PROTO=TCP SPT=443 DPT=50262 WINDOW=1050 RES=0x00 ACK PSH URGP=0 \n...",
+                "categories": [
+                    14,
+                    18
+                ],
+                "reporterId": 48089,
+                "reporterCountryCode": "US",
+                "reporterCountryName": "United States of America"
+            },
+            {
+                "reportedAt": "2024-11-05T17:05:18+00:00",
+                "comment": "TeamViewer RMM - DNS (Response)",
+                "categories": [
+                    15
+                ],
+                "reporterId": 27827,
+                "reporterCountryCode": "CA",
+                "reporterCountryName": "Canada"
+            },
+            {
+                "reportedAt": "2024-11-04T02:50:25+00:00",
+                "comment": "Ni uno, esto es solo una prueba.",
+                "categories": [
+                    10
+                ],
+                "reporterId": 169136,
+                "reporterCountryCode": "MX",
+                "reporterCountryName": "Mexico"
+            },
+            {
+                "reportedAt": "2024-11-04T00:51:39+00:00",
+                "comment": "Blocked by UFW (TCP on port 52125).\nSource port: 443\nTTL: 122\nPacket length: 113\nTOS: 0x00\n\nThis report (for 8.8.8.8) was generated by:\nhttps://github.com/sefinek24/UFW-AbuseIPDB-Reporter",
+                "categories": [
+                    14
+                ],
+                "reporterId": 158699,
+                "reporterCountryCode": "PL",
+                "reporterCountryName": "Poland"
+            },
+            {
+                "reportedAt": "2024-11-03T17:54:03+00:00",
+                "comment": "Nov  3 12:53:58 egress kernel: filter_IN_external_REJECT: IN=enp4s0 OUT= MAC=a0:36:9f:e7:16:2b:c4:ca:2b:5b:14:13:08:00 SRC=8.8.8.8 DST=73.244.51.57 LEN=125 TOS=0x00 PREC=0x00 TTL=57 ID=61065 PROTO=TCP SPT=443 DPT=38852 WINDOW=1050 RES=0x00 ACK PSH URGP=0 \nNov  3 12:53:59 egress kernel: filter_IN_external_REJECT: IN=enp4s0 OUT= MAC=a0:36:9f:e7:16:2b:c4:ca:2b:5b:14:13:08:00 SRC=8.8.8.8 DST=73.244.51.57 LEN=125 TOS=0x00 PREC=0x00 TTL=121 ID=61066 PROTO=TCP SPT=443 DPT=38852 WINDOW=1050 RES=0x00 ACK PSH URGP=0 \nNov  3 12:54:01 egress kernel: filter_IN_external_REJECT: IN=enp4s0 OUT= MAC=a0:36:9f:e7:16:2b:c4:ca:2b:5b:14:13:08:00 SRC=8.8.8.8 DST=73.244.51.57 LEN=125 TOS=0x00 PREC=0x00 TTL=120 ID=61067 PROTO=TCP SPT=443 DPT=38852 WINDOW=1050 RES=0x00 ACK PSH URGP=0 \n...",
+                "categories": [
+                    14,
+                    18
+                ],
+                "reporterId": 48089,
+                "reporterCountryCode": "US",
+                "reporterCountryName": "United States of America"
+            }
+        ]
+    }
+}

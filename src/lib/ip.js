@@ -12,7 +12,7 @@ export async function analyzeIP(ip) {
         },
     });
 
-    const urlAbuseIPDBInfo = `${API_ABUSEIPDB}=${ip}`
+    const urlAbuseIPDBInfo = `${API_ABUSEIPDB}=${ip}&verbose`
     const abuseipdbResponse = await fetch(urlAbuseIPDBInfo, {
         headers: {
             'Key': abuseipdbKey,
@@ -20,8 +20,10 @@ export async function analyzeIP(ip) {
         },
     });
 
+
     const virustotalData = await virustotalResponse.json()
     const abuseipdbData = await abuseipdbResponse.json()
+    console.log(abuseipdbData)
 
 
     return {
