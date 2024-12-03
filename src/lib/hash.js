@@ -38,7 +38,7 @@ export async function analyzeHash(hash) {
     const urlPolyswarmInfo = `${API_POLYSWARM}/${hashType}?hash=${hash}`
     const polyswarmResponse = await fetch(urlPolyswarmInfo, {
         headers: {
-            'Authorization': `${polyswarmKey}`,
+            'Authorization': polyswarmKey,
         },
     });
 
