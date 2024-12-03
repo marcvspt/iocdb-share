@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { IoCResult } from "@/components/IoCResult";
-import styles from "@/styles/IoCAnalyzer.module.css";
 import { Loader } from "@/components/Loader";
 
 export const IoCAnalyzer = () => {
@@ -54,10 +53,14 @@ export const IoCAnalyzer = () => {
   };
 
   return (
-    <section className={styles.iocAnalyzer}>
-      <form onSubmit={handleSubmit} className={styles.form} aria-label="IoC Analysis Form">
-        <div className={styles.inputGroup}>
-          <label htmlFor="ioc" className={styles.label}>
+    <section className="mx-auto p-8 w-full max-w-3xl text-white text-lg leading-relaxed">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-4 mb-8"
+        aria-label="IoC Analysis Form"
+      >
+        <div className="flex flex-col gap-2">
+          <label htmlFor="ioc" className="text-sm text-accent-light">
             Introduce un IoC (IP, Hash, Email o Dominio)
           </label>
           <input
@@ -67,18 +70,21 @@ export const IoCAnalyzer = () => {
             onChange={(e) => setIoc(e.target.value)}
             placeholder="8.8.8.8, test@example.com, 44d88612fea8a8f36de82e1278abb02f, etc"
             required
-            className={styles.input}
+            className="p-2 text-base border border-accent-light/20 rounded bg-accent-dark/10 text-white"
             aria-required="true"
           />
         </div>
-        <button type="submit" className={styles.button} disabled={isLoading}>
+        <button
+          type="submit"
+          className="p-2 text-base font-semibold text-gray-800 bg-gradient-to-r from-blue-400 to-purple-500 bg-size-200 bg-pos-0 border-none rounded cursor-pointer transition-all duration-300 ease-in-out hover:bg-pos-100"
+          disabled={isLoading}
+        >
           {isLoading ? "Analizando..." : "Analizar"}
         </button>
       </form>
-      {error && <p className={styles.error}>{error}</p>}
+      {error && <p className="text-red-600 font-bold">{error}</p>}
       {isLoading && <Loader />}
       {result && <IoCResult result={result} />}
     </section>
   );
 };
-
