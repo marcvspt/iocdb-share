@@ -1,16 +1,55 @@
 import React, { useState } from "react";
 import { IoCResult } from "@/components/IoCResult";
 import styles from "@/styles/IoCAnalyzer.module.css";
-import { useIoCAnalyzer } from "@/hooks/useIoCAnalyzer";
 
 export const IoCAnalyzer = () => {
-  const { updateIoC, analyzeIoC, result, error } = useIoCAnalyzer();
-  const [input, setInput] = useState("");
+  const [ioc, setIoc] = useState("");
+  const [result, setResult] = useState(null);
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    updateIoC(input); // Actualiza el IoC en el hook
-    await analyzeIoC(); // Analiza el IoC
+    setIsLoading(true);
+    setError("");
+    setResult(null);
+
+    try {
+      const typeResponse = await fetch(`/api/type?ioc=${encodeURIComponent(ioc)}`);
+      const typeData = await typeResponse.json();
+
+      if (typeData.error) {
+        throw new Error(typeData.error);
+      }
+
+      // Fetch analysis data based on type
+      const analyzeResponse = await fetch(
+        `/api/analyze/${typeData.type}?ioc=${encodeURIComponent(ioc)}`
+      );
+      const analyzeData = await analyzeResponse.json();
+
+      // Set results based on IoC type
+      if (typeData.type === "ip" || typeData.type === "domain") {
+        setResult({
+          api1: analyzeData.virustotal,
+          api2: typeData.type === "ip" ? analyzeData.abuseipdb : analyzeData.otx,
+        });
+      } else if (typeData.type === "email") {
+        setResult({
+          api1: analyzeData.emailrep,
+          api2: analyzeData.haveibeenpwned,
+        });
+      } else if (typeData.type === "hash") {
+        setResult({
+          api1: analyzeData.virustotal,
+          api2: analyzeData.polyswarm,
+        });
+      }
+    } catch (err) {
+      setError(err.message || "An error occurred while analyzing the IoC.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -23,20 +62,22 @@ export const IoCAnalyzer = () => {
           <input
             id="ioc"
             type="text"
+            value={ioc}
+            onChange={(e) => setIoc(e.target.value)}
             placeholder="8.8.8.8, test@example.com, 44d88612fea8a8f36de82e1278abb02f, etc"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
             required
             className={styles.input}
             aria-required="true"
           />
         </div>
-        <button type="submit" className={styles.button}>
-          Analizar
+        <button type="submit" className={styles.button} disabled={isLoading}>
+          {isLoading ? "Analizando..." : "Analizar"}
         </button>
       </form>
       {error && <p className={styles.error}>{error}</p>}
+      {isLoading && <p className={styles.loading}>Analizando IoC...</p>}
       {result && <IoCResult result={result} />}
     </section>
   );
 };
+
