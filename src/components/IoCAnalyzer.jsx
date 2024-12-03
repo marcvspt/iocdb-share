@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { IoCResult } from "@/components/IoCResult";
 import styles from "@/styles/IoCAnalyzer.module.css";
+import { Loader } from "@/components/Loader";
 
 export const IoCAnalyzer = () => {
   const [ioc, setIoc] = useState("");
@@ -75,7 +76,7 @@ export const IoCAnalyzer = () => {
         </button>
       </form>
       {error && <p className={styles.error}>{error}</p>}
-      {isLoading && <p className={styles.loading}>Analizando IoC...</p>}
+      {isLoading && <Loader />}
       {result && <IoCResult result={result} />}
     </section>
   );
