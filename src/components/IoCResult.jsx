@@ -5,8 +5,6 @@ import { DomainVirusTotal } from "@/components/APIs/DomainVirusTotal";
 import { DomainOTX } from "@/components/APIs/DomainOTX";
 import { HashVirusTotal } from "@/components/APIs/HashVirusTotal";
 import { HashPolySwarm } from "@/components/APIs/HashPolySwarm";
-import { EmailEmailrep } from "@/components/APIs/EmailEmailrep";
-import { EmailHIBP } from "@/components/APIs/EmailHIBP";
 
 
 export const IoCResult = ({ result, typeData }) => {
@@ -31,10 +29,11 @@ export const IoCResult = ({ result, typeData }) => {
                             {api1Source}
                         </h3>
                     </header>
-                    {typeData === "ip" && <IPVirusTotal jsonData={api1Data} />}
-                    {typeData === "domain" && <DomainVirusTotal jsonData={api1Data} />}
-                    {typeData === "hash" && <HashVirusTotal jsonData={api1Data} />}
-                    {typeData === "email" && <EmailEmailrep jsonData={api1Data} />}
+                    <aside className="mt-3 p-6 border border-accent-dark rounded-lg shadow-lg">
+                        {typeData === "ip" && <IPVirusTotal jsonData={api1Data} />}
+                        {typeData === "domain" && <DomainVirusTotal jsonData={api1Data} />}
+                        {typeData === "hash" && <HashVirusTotal jsonData={api1Data} />}
+                    </aside>
                 </article>
                 <article
                     className="bg-accent-dark/20 rounded-lg"
@@ -48,10 +47,11 @@ export const IoCResult = ({ result, typeData }) => {
                             {api2Source}
                         </h3>
                     </header>
-                    {typeData === "ip" && <IPAbuseIPDB jsonData={api2Data} />}
-                    {typeData === "domain" && <DomainOTX jsonData={api2Data} />}
-                    {typeData === "hash" && <HashPolySwarm jsonData={api2Data} />}
-                    {typeData === "email" && <EmailHIBP jsonData={api2Data} />}
+                    <aside className="mt-3 p-6 border border-accent-dark rounded-lg shadow-lg">
+                        {typeData === "ip" && <IPAbuseIPDB jsonData={api2Data} />}
+                        {typeData === "domain" && <DomainOTX jsonData={api2Data} />}
+                        {typeData === "hash" && <HashPolySwarm jsonData={api2Data} />}
+                    </aside>
                 </article>
             </div>
         </section>

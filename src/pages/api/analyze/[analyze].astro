@@ -1,7 +1,6 @@
 ---
 import { analyzeIP } from "src/lib/ip";
 import { analyzeDomain } from "src/lib/domain";
-import { analyzeEmail } from "src/lib/email";
 import { analyzeHash } from "src/lib/hash";
 
 export const prerender = false;
@@ -23,9 +22,6 @@ switch (analyze) {
         break;
     case "domain":
         result = await analyzeDomain(ioc);
-        break;
-    case "email":
-        result = await analyzeEmail(ioc);
         break;
     case "hash":
         result = await analyzeHash(ioc);

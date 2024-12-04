@@ -43,12 +43,7 @@ export const IoCAnalyzer = () => {
           api1: { source: "VirusTotal", data: analyzeData.virustotal },
           api2: { source: "AlienVault OTX", data: analyzeData.otx },
         });
-      } else if (iocType.type === "email") {
-        setResult({
-          api1: { source: "Emailrep", data: analyzeData.emailrep },
-          api2: { source: "Have I Been Pwned?", data: analyzeData.haveibeenpwned },
-        });
-      } else if (iocType.type === "hash") {
+      }else if (iocType.type === "hash") {
         setResult({
           api1: { source: "VirusTotal", data: analyzeData.virustotal },
           api2: { source: "PolySwarm", data: analyzeData.polyswarm },
@@ -62,7 +57,7 @@ export const IoCAnalyzer = () => {
   };
 
   return (
-    <section className="mx-auto pt-8 w-full max-w-3xl text-white text-lg leading-relaxed">
+    <section className="mx-auto pt-8 w-full max-w-screen-lg text-white text-lg leading-relaxed">
       <form
         onSubmit={handleSubmit}
         className="flex flex-col gap-4 mb-8"
@@ -70,14 +65,14 @@ export const IoCAnalyzer = () => {
       >
         <div className="flex flex-col gap-2">
           <label htmlFor="ioc" className="text-sm text-accent-light">
-            Introduce un IoC (IP, Hash, Email o Dominio)
+            Introduce un IoC (IP, Hash o Dominio)
           </label>
           <input
             id="ioc"
             type="text"
             value={ioc}
             onChange={(e) => setIoc(e.target.value)}
-            placeholder="8.8.8.8, test@example.com, 44d88612fea8a8f36de82e1278abb02f, etc"
+            placeholder="8.8.8.8, 44d88612fea8a8f36de82e1278abb02f o example.com"
             required
             className="p-2 text-base border border-accent-light/20 rounded bg-accent-dark/10 text-white"
             aria-required="true"
