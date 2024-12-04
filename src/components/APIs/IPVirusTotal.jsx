@@ -3,7 +3,7 @@ export const IPVirusTotal = ({ jsonData }) => {
     const reportData = jsonData.data.attributes.last_analysis_stats
 
     return (
-        <aside className="mt-3 p-6 border border-accent-dark rounded-lg shadow-lg bg-accent-dark">
+        <>
             <h3 className="font-bold">Empresas de ciberseguridad:</h3>
             <ul>
                 <li>Malicioso: <span>{reportData.malicious}</span></li>
@@ -13,6 +13,6 @@ export const IPVirusTotal = ({ jsonData }) => {
             </ul>
             <p className="font-bold mt-5">Reputación de la comunidad: <span className="font-normal">{importanData.reputation}</span>
             </p>
-        </aside >
+        </>
     );
 }

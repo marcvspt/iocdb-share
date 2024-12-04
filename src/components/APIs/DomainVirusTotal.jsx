@@ -1,18 +1,22 @@
 export const DomainVirusTotal = ({ jsonData }) => {
-    const importanData = jsonData.data.attributes
-    const reportData = jsonData.data.attributes.last_analysis_stats
+    const reportInfoData = jsonData.data.attributes
+    const reportInfoStats = jsonData.data.attributes.last_analysis_stats
 
     return (
-        <aside className="mt-3 p-6 border border-accent-dark rounded-lg shadow-lg bg-accent-dark">
-            <h3 className="font-bold">Empresas de ciberseguridad:</h3>
+        <>
+            <h3 className="font-bold">Clasificación:</h3>
             <ul>
-                <li>Malicioso: <span>{reportData.malicious}</span></li>
-                <li>Sospechoso: <span>{reportData.suspicious}</span></li>
-                <li>Sin detecciones: <span>{reportData.harmless}</span></li>
-                <li>Sin información: <span>{reportData.undetected}</span></li>
+                <li>Malicioso: <span>{reportInfoStats.malicious}</span></li>
+                <li>Sospechoso: <span>{reportInfoStats.suspicious}</span></li>
+                <li>Sin detecciones: <span>{reportInfoStats.harmless}</span></li>
+                <li>Sin información: <span>{reportInfoStats.undetected}</span></li>
             </ul>
-            <p className="font-bold mt-5">Reputación de la comunidad: <span className="font-normal">{importanData.reputation}</span>
-            </p>
-        </aside >
+
+            <h3 className="font-bold">Reputación:</h3>
+            <p className="font-bold mt-5"><span className="font-normal">{reportInfoData.reputation && "N/A"}</span></p>
+
+            <h3 className="font-bold">Categorias:</h3>
+            <p className="font-bold mt-5"><span className="font-normal">{reportInfoData.categories && "N/A"}</span></p>
+        </ >
     );
 }
