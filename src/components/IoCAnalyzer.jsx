@@ -7,42 +7,51 @@ export const IoCAnalyzer = () => {
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [typeData, setTypeData] = useState(null)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setError("");
     setResult(null);
+    setTypeData(null);
 
     try {
-      const typeResponse = await fetch(`/api/type?ioc=${encodeURIComponent(ioc)}`);
-      const typeData = await typeResponse.json();
+      const typeIoCResponse = await fetch(`/api/type?ioc=${encodeURIComponent(ioc)}`);
+      const iocType = await typeIoCResponse.json();
 
-      if (typeData.error) {
-        throw new Error(typeData.error);
+      if (iocType.error) {
+        throw new Error(iocType.error);
       }
+
+      setTypeData(iocType);
 
       // Fetch analysis data based on type
       const analyzeResponse = await fetch(
-        `/api/analyze/${typeData.type}?ioc=${encodeURIComponent(ioc)}`
+        `/api/analyze/${iocType.type}?ioc=${encodeURIComponent(ioc)}`
       );
       const analyzeData = await analyzeResponse.json();
 
       // Set results based on IoC type
-      if (typeData.type === "ip" || typeData.type === "domain") {
+      if (iocType.type === "ip") {
         setResult({
-          api1: analyzeData.virustotal,
-          api2: typeData.type === "ip" ? analyzeData.abuseipdb : analyzeData.otx,
+          api1: { source: "VirusTotal", data: analyzeData.virustotal },
+          api2: { source: "AbuseIPDB", data: analyzeData.abuseipdb },
         });
-      } else if (typeData.type === "email") {
+      } else if (iocType.type === "domain") {
         setResult({
-          api1: analyzeData.emailrep,
-          api2: analyzeData.haveibeenpwned,
+          api1: { source: "VirusTotal", data: analyzeData.virustotal },
+          api2: { source: "AlienVault OTX", data: analyzeData.otx },
         });
-      } else if (typeData.type === "hash") {
+      } else if (iocType.type === "email") {
         setResult({
-          api1: analyzeData.virustotal,
-          api2: analyzeData.polyswarm,
+          api1: { source: "Emailrep", data: analyzeData.emailrep },
+          api2: { source: "Have I Been Pwned?", data: analyzeData.haveibeenpwned },
+        });
+      } else if (iocType.type === "hash") {
+        setResult({
+          api1: { source: "VirusTotal", data: analyzeData.virustotal },
+          api2: { source: "PolySwarm", data: analyzeData.polyswarm },
         });
       }
     } catch (err) {
@@ -53,7 +62,7 @@ export const IoCAnalyzer = () => {
   };
 
   return (
-    <section className="mx-auto p-8 w-full max-w-3xl text-white text-lg leading-relaxed">
+    <section className="mx-auto pt-8 w-full max-w-3xl text-white text-lg leading-relaxed">
       <form
         onSubmit={handleSubmit}
         className="flex flex-col gap-4 mb-8"
@@ -84,7 +93,7 @@ export const IoCAnalyzer = () => {
       </form>
       {error && <p className="text-red-600 font-bold">{error}</p>}
       {isLoading && <Loader />}
-      {result && <IoCResult result={result} />}
+      {result && <IoCResult result={result} typeData={typeData.type} />}
     </section>
   );
 };
