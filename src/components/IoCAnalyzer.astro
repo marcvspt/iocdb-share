@@ -1,0 +1,36 @@
+---
+import Loader from "@/components/Loader.astro";
+---
+
+<section
+    id="iocAnalysis"
+    class="mx-auto pt-8 w-full max-w-3xl text-white text-lg leading-relaxed"
+>
+    <form id="iocForm" class="flex flex-col gap-4 mb-8">
+        <div class="flex flex-col gap-2">
+            <label for="ioc" class="text-sm text-accent-light">
+                Introduce un IoC (IP, Hash o Dominio)
+            </label>
+            <input
+                id="ioc"
+                type="text"
+                placeholder="8.8.8.8, example.com, 44d88612fea8a8f36de82e1278abb02f, etc"
+                required
+                class="p-2 text-base border border-accent-light/20 rounded bg-accent-dark/10 text-white"
+            />
+        </div>
+        <button
+            type="submit"
+            class="p-2 text-base font-semibold text-gray-800 bg-gradient-to-r from-blue-400 to-purple-500 hover:from-purple-500 hover:to-blue-400 border-none rounded cursor-pointer transition-all duration-300 ease-in-out"
+            id="iocSubmit"
+        >
+            Analizar
+        </button>
+    </form>
+    <article id="error" class="hidden">
+        <p class="text-red-600 font-bold">Error</p>
+    </article>
+    <article id="loader" class="hidden">
+        <Loader />
+    </article>
+</section>

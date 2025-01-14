@@ -1,11 +1,24 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "@/layouts/Layout.astro";
+import IoCAnalyzer from "@/components/IoCAnalyzer.astro";
+import IoCResults from "@/components/IoCResults.astro";
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Bienvenidos a IoCDB Share">
+	<main class="mx-auto pt-24 text-white text-lg">
+		<h1
+			class="text-6xl font-bold leading-none text-center [text-wrap:balance] pb-8"
+		>
+			Bienvenidos a
+			<span
+				class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent bg-[400%] bg-pos-0"
+			>
+				IoCDB Share
+			</span>
+		</h1>
+		<IoCAnalyzer />
+		<IoCResults />
+
+		<script src="@/lib/analyzer.js"></script>
+	</main>
 </Layout>
