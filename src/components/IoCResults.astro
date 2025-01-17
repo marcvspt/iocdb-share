@@ -1,5 +1,10 @@
 ---
-import IoCResultAPI from "@/components/IoCResultAPI.astro";
+import IPVT from "@/components/results/IPVT.astro";
+import IPAbuseIPDB from "@/components/results/IPAbuseIPDB.astro";
+import DomainVT from "@/components/results/DomainVT.astro";
+import DomainOTX from "@/components/results/DomainOTX.astro";
+import HashVT from "@/components/results/HashVT.astro";
+import HashPolyswarm from "@/components/results/HashPolyswarm.astro";
 ---
 
 <section
@@ -7,7 +12,11 @@ import IoCResultAPI from "@/components/IoCResultAPI.astro";
     class="mx-auto w-full max-w-3xl text-white text-lg leading-relaxed hidden h-full"
 >
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-auto-fit gap-4">
-        <IoCResultAPI apiID="1" />
-        <IoCResultAPI apiID="2" />
+        <IPVT />
+        <IPAbuseIPDB />
+        <DomainVT />
+        <DomainOTX />
+        <HashVT />
+        <HashPolyswarm />
     </div>
 </section>

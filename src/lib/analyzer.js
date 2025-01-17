@@ -1,228 +1,216 @@
-const $formAnalyzer = document.querySelector("#iocForm");
-const $input = document.querySelector("#ioc");
-const $submitIoC = document.querySelector("#iocSubmit");
-const $errorMsg = document.querySelector("#error");
-const $loader = document.querySelector("#loader");
-const $result = document.querySelector("#iocResults");
-const $api1Title = document.querySelector("#api1-title");
-const $api2Title = document.querySelector("#api2-title");
-const $api1Result = document.querySelector("#api1-result");
-const $api2Result = document.querySelector("#api2-result");
-const $virustotalIP = document.querySelector("#virustotalip");
-const $abuseipdb = document.querySelector("#abuseipdb");
-const $virustotalDomain = document.querySelector("#virustotaldomain");
-const $alienvaultotx = document.querySelector("#alienvaultotx");
-const $virustotalHash = document.querySelector("#virustotalhash");
-const $polyswarm = document.querySelector("#polyswarm");
+const $ = (el) => document.querySelector(el)
+const $$ = (el) => document.querySelectorAll(el)
+
+const $formAnalyzer = $("#iocForm")
+const $input = $("#ioc")
+const $submitIoC = $("#iocSubmit")
+const $errorMsg = $("#error")
+const $loader = $("#loader")
+const $results = $("#iocResults")
+
+
+const $vtIP = $("#vtip")
+const $vtIPTitle = $("#vtip-title")
+const $vtIPReputation = $("#vtip-reputation")
+const $vtIPOwner = $("#vtip-owner")
+const $vtIPCountry = $("#vtip-country")
+const $vtIPAnalysisHarmless = $("#vtip-analysis-harmless")
+const $vtIPAnalysisMalicious = $("#vtip-analysis-malicious")
+const $vtIPAnalysisSuspicious = $("#vtip-analysis-suspicious")
+const $vtIPAnalysisUndetected = $("#vtip-analysis-undetected")
+const $vtIPAnalysisTimeout = $("#vtip-analysis-timeout")
+const $vtIPVotesHarmless = $("#vtip-votes-harmless")
+const $vtIPVotesMalicious = $("#vtip-votes-malicious")
+
+const $vtDomain = $("#vtdomain")
+const $vtDomainTitle = $("#vtdomain-title")
+const $vtDomainReputation = $("#vtdomain-reputation")
+const $vtDomainAnalysisHarmless = $("#vtdomain-analysis-harmless")
+const $vtDomainAnalysisMalicious = $("#vtdomain-analysis-malicious")
+const $vtDomainAnalysisSuspicious = $("#vtdomain-analysis-suspicious")
+const $vtDomainAnalysisUndetected = $("#vtdomain-analysis-undetected")
+const $vtDomainAnalysisTimeout = $("#vtdomain-analysis-timeout")
+const $vtDomainVotesHarmless = $("#vtdomain-votes-harmless")
+const $vtDomainVotesMalicious = $("#vtdomain-votes-malicious")
+
+const $vtHash = $("#vthash")
+const $vtHashTitle = $("#vthash-title")
+const $vtHashReputation = $("#vthash-reputation")
+const $vtHashTypefile = $("#vthash-typefile")
+const $vtHashMagicNumber = $("#vthash-magicnumber")
+const $vtHashAnalysisHarmless = $("#vthash-analysis-harmless")
+const $vtHashAnalysisMalicious = $("#vthash-analysis-malicious")
+const $vtHashAnalysisSuspicious = $("#vthash-analysis-suspicious")
+const $vtHashAnalysisUndetected = $("#vthash-analysis-undetected")
+const $vtHashAnalysisTimeout = $("#vthash-analysis-timeout")
+const $vtHashVotesHarmless = $("#vthash-votes-harmless")
+const $vtHashVotesMalicious = $("#vthash-votes-malicious")
+
+const $abuseIPDB = $("#abuseipdb")
+const $abuseIPDBTitle = $("#abuseipdb-title")
+const $abuseIPDBISP = $("#abuseipdb-isp")
+const $abuseIPDBCountryName = $("#abuseipdb-countryname")
+const $abuseIPDBTotalReports = $("#abuseipdb-totalreports")
+const $abuseIPDBConfidenceScore = $("#abuseipdb-confidencescore")
+const $abuseIPDBVotesWhitelist = $("#abuseipdb-whitelist")
+
+const $otx = $("#otx")
+const $otxTitle = $("#otx-title")
+const $otxPulseCount = $("#otx-pulsecount")
+
+const $polyswarm = $("#polyswarm")
+const $polyswarmTitle = $("#polyswarm-title")
+const $polyswarmExtfiletype = $("#polyswarm-extfiletype")
+const $polyswarmMalwarefamliy = $("#polyswarm-malwarefamliy")
 
 function resetUI() {
-    $errorMsg.classList.add("hidden");
-    $result.classList.add("hidden");
-    $loader.classList.remove("hidden");
+    $errorMsg.classList.add("hidden")
+    $results.classList.add("hidden")
+    $loader.classList.remove("hidden")
+}
+
+function resetResults() {
+    $vtIP.classList.add("hidden")
+    $vtDomain.classList.add("hidden")
+    $vtHash.classList.add("hidden")
+    $abuseIPDB.classList.add("hidden")
+    $otx.classList.add("hidden")
+    $polyswarm.classList.add("hidden")
 }
 
 function resultsAPI1(api1Json, iocType) {
-
-    const { source, apiResponse } = api1Json;
+    const { source, apiResponse } = api1Json
+    const { data } = apiResponse
 
     if (iocType === "ip") {
-        $virustotalIP.classList.remove("hidden");
-        $virustotalDomain.classList.add("hidden");
-        $virustotalHash.classList.add("hidden");
+        $vtIP.classList.remove("hidden")
 
-        const $api1ResultReputation = document.querySelector("#api1-result-virustotalip-reputation");
-        const $api1ResultOwner = document.querySelector("#api1-result-virustotalip-owner");
-        const $api1ResultCountry = document.querySelector("#api1-result-virustotalip-country");
-
-        const $api1ResultAnalysisHarmless = document.querySelector("#api1-result-virustotalip-analysis-harmless");
-        const $api1ResultAnalysisMalicious = document.querySelector("#api1-result-virustotalip-analysis-malicious");
-        const $api1ResultAnalysisSuspicious = document.querySelector("#api1-result-virustotalip-analysis-suspicious");
-        const $api1ResultAnalysisUndetected = document.querySelector("#api1-result-virustotalip-analysis-undetected");
-        const $api1ResultAnalysisTimeout = document.querySelector("#api1-result-virustotalip-analysis-timeout");
-
-        const $api1ResultVotesHarmless = document.querySelector("#api1-result-virustotalip-votes-harmless");
-        const $api1ResultVotesMalicious = document.querySelector("#api1-result-virustotalip-votes-malicious");
-        const { data } = apiResponse;
-
-
-        $api1Title.textContent = source;
-        $api1ResultReputation.append(data.attributes.reputation);
-        $api1ResultOwner.append(data.attributes.as_owner);
-        $api1ResultCountry.append(data.attributes.country);
-        $api1ResultAnalysisHarmless.append(data.attributes.last_analysis_stats.harmless);
-        $api1ResultAnalysisMalicious.append(data.attributes.last_analysis_stats.malicious);
-        $api1ResultAnalysisSuspicious.append(data.attributes.last_analysis_stats.suspicious);
-        $api1ResultAnalysisUndetected.append(data.attributes.last_analysis_stats.undetected);
-        $api1ResultAnalysisTimeout.append(data.attributes.last_analysis_stats.timeout);
-        $api1ResultVotesHarmless.append(data.attributes.total_votes.harmless);
-        $api1ResultVotesMalicious.append(data.attributes.total_votes.malicious);
+        $vtIPTitle.textContent = source
+        $vtIPReputation.textContent = data.attributes.reputation
+        $vtIPOwner.textContent = data.attributes.as_owner
+        $vtIPCountry.textContent = data.attributes.country
+        $vtIPAnalysisHarmless.textContent = data.attributes.last_analysis_stats.harmless
+        $vtIPAnalysisMalicious.textContent = data.attributes.last_analysis_stats.malicious
+        $vtIPAnalysisSuspicious.textContent = data.attributes.last_analysis_stats.suspicious
+        $vtIPAnalysisUndetected.textContent = data.attributes.last_analysis_stats.undetected
+        $vtIPAnalysisTimeout.textContent = data.attributes.last_analysis_stats.timeout
+        $vtIPVotesHarmless.textContent = data.attributes.total_votes.harmless
+        $vtIPVotesMalicious.textContent = data.attributes.total_votes.malicious
     } else if (iocType === "domain") {
-        $virustotalIP.classList.add("hidden");
-        $virustotalDomain.classList.remove("hidden");
-        $virustotalHash.classList.add("hidden");
+        $vtDomain.classList.remove("hidden")
 
-
-        const $api1ResultReputation = document.querySelector("#api1-result-virustotaldomain-reputation");
-        const $api1ResultAnalysisHarmless = document.querySelector("#api1-result-virustotaldomain-analysis-harmless");
-        const $api1ResultAnalysisMalicious = document.querySelector("#api1-result-virustotaldomain-analysis-malicious");
-        const $api1ResultAnalysisSuspicious = document.querySelector("#api1-result-virustotaldomain-analysis-suspicious");
-        const $api1ResultAnalysisUndetected = document.querySelector("#api1-result-virustotaldomain-analysis-undetected");
-        const $api1ResultAnalysisTimeout = document.querySelector("#api1-result-virustotaldomain-analysis-timeout");
-
-        const $api1ResultVotesHarmless = document.querySelector("#api1-result-virustotaldomain-votes-harmless");
-        const $api1ResultVotesMalicious = document.querySelector("#api1-result-virustotaldomain-votes-malicious");
-        const { data } = apiResponse;
-
-
-        $api1Title.textContent = source;
-        $api1ResultReputation.append(data.attributes.reputation);
-        $api1ResultAnalysisHarmless.append(data.attributes.last_analysis_stats.harmless);
-        $api1ResultAnalysisMalicious.append(data.attributes.last_analysis_stats.malicious);
-        $api1ResultAnalysisSuspicious.append(data.attributes.last_analysis_stats.suspicious);
-        $api1ResultAnalysisUndetected.append(data.attributes.last_analysis_stats.undetected);
-        $api1ResultAnalysisTimeout.append(data.attributes.last_analysis_stats.timeout);
-        $api1ResultVotesHarmless.append(data.attributes.total_votes.harmless);
-        $api1ResultVotesMalicious.append(data.attributes.total_votes.malicious);
+        $vtDomainTitle.textContent = source
+        $vtDomainReputation.textContent = data.attributes.reputation
+        $vtDomainAnalysisHarmless.textContent = data.attributes.last_analysis_stats.harmless
+        $vtDomainAnalysisMalicious.textContent = data.attributes.last_analysis_stats.malicious
+        $vtDomainAnalysisSuspicious.textContent = data.attributes.last_analysis_stats.suspicious
+        $vtDomainAnalysisUndetected.textContent = data.attributes.last_analysis_stats.undetected
+        $vtDomainAnalysisTimeout.textContent = data.attributes.last_analysis_stats.timeout
+        console.log(data.attributes.total_votes)
+        $vtDomainVotesHarmless.textContent = data.attributes.total_votes.harmless
+        $vtDomainVotesMalicious.textContent = data.attributes.total_votes.malicious
     } else if (iocType === "hash") {
-        $virustotalIP.classList.add("hidden");
-        $virustotalDomain.classList.add("hidden");
-        $virustotalHash.classList.remove("hidden");
+        $vtHash.classList.remove("hidden");
 
-        const $api1ResultReputation = document.querySelector("#api1-result-virustotalhash-reputation");
-        const $api1ResultTypefile = document.querySelector("#api1-result-virustotalhash-typefile");
-        const $api1ResultMagicNumber = document.querySelector("#api1-result-virustotalhash-magicnumber");
-
-        const $api1ResultAnalysisHarmless = document.querySelector("#api1-result-virustotalhash-analysis-harmless");
-        const $api1ResultAnalysisMalicious = document.querySelector("#api1-result-virustotalhash-analysis-malicious");
-        const $api1ResultAnalysisSuspicious = document.querySelector("#api1-result-virustotalhash-analysis-suspicious");
-        const $api1ResultAnalysisUndetected = document.querySelector("#api1-result-virustotalhash-analysis-undetected");
-        const $api1ResultAnalysisTimeout = document.querySelector("#api1-result-virustotalhash-analysis-timeout");
-
-        const $api1ResultVotesHarmless = document.querySelector("#api1-result-virustotalhash-votes-harmless");
-        const $api1ResultVotesMalicious = document.querySelector("#api1-result-virustotalhash-votes-malicious");
-
-        const { data } = apiResponse;
-
-
-        $api1Title.textContent = source;
-        $api1ResultReputation.append(data.attributes.reputation);
-        $api1ResultTypefile.append(data.attributes.trid[0].file_type);
-        $api1ResultMagicNumber.append(data.attributes.magic);
-        $api1ResultAnalysisHarmless.append(data.attributes.last_analysis_stats.harmless);
-        $api1ResultAnalysisMalicious.append(data.attributes.last_analysis_stats.malicious);
-        $api1ResultAnalysisSuspicious.append(data.attributes.last_analysis_stats.suspicious);
-        $api1ResultAnalysisUndetected.append(data.attributes.last_analysis_stats.undetected);
-        $api1ResultAnalysisTimeout.append(data.attributes.last_analysis_stats.timeout);
-        $api1ResultVotesHarmless.append(data.attributes.total_votes.harmless);
-        $api1ResultVotesMalicious.append(data.attributes.total_votes.malicious);
+        $vtHashTitle.textContent = source
+        $vtHashReputation.textContent = data.attributes.reputation
+        $vtHashTypefile.textContent = data.attributes.trid[0].file_type
+        $vtHashMagicNumber.textContent = data.attributes.magic
+        $vtHashAnalysisHarmless.textContent = data.attributes.last_analysis_stats.harmless
+        $vtHashAnalysisMalicious.textContent = data.attributes.last_analysis_stats.malicious
+        $vtHashAnalysisSuspicious.textContent = data.attributes.last_analysis_stats.suspicious
+        $vtHashAnalysisUndetected.textContent = data.attributes.last_analysis_stats.undetected
+        $vtHashAnalysisTimeout.textContent = data.attributes.last_analysis_stats.timeout
+        $vtHashVotesHarmless.textContent = data.attributes.total_votes.harmless
+        $vtHashVotesMalicious.textContent = data.attributes.total_votes.malicious
     }
 }
 
 function resultsAPI2(api2Json, iocType) {
-    const { source, apiResponse } = api2Json;
+    const { source, apiResponse } = api2Json
 
     if (iocType === "ip") {
-        $abuseipdb.classList.remove("hidden");
-        $alienvaultotx.classList.add("hidden");
-        $polyswarm.classList.add("hidden");
+        $abuseIPDB.classList.remove("hidden")
 
+        const { data } = apiResponse
 
-        const $api2ResultISP = document.querySelector("#api2-result-abuseipdb-isp");
-        const $api2ResultCountryName = document.querySelector("#api2-result-abuseipdb-countryname");
-        const $api2ResultTotalReports = document.querySelector("#api2-result-abuseipdb-totalreports");
-        const $api2ResultConfidenceScore = document.querySelector("#api2-result-abuseipdb-confidencescore");
-        const $api2ResultVotesWhitelist = document.querySelector("#api2-result-abuseipdb-whitelist");
-
-        const { data } = apiResponse;
-
-        $api2Title.textContent = source;
-        $api2ResultISP.append(data.isp);
-        $api2ResultCountryName.append(data.countryName);
-        $api2ResultTotalReports.append(data.totalReports);
-        $api2ResultConfidenceScore.append(`${data.abuseConfidenceScore}%`);
-        $api2ResultVotesWhitelist.append(data.isWhitelisted);
+        $abuseIPDBTitle.textContent = source
+        $abuseIPDBISP.textContent = data.isp
+        $abuseIPDBCountryName.textContent = data.countryName
+        $abuseIPDBTotalReports.textContent = data.totalReports
+        $abuseIPDBConfidenceScore.textContent = `${data.abuseConfidenceScore}%`
+        $abuseIPDBVotesWhitelist.textContent = data.isWhitelisted
     } else if (iocType === "domain") {
-        $abuseipdb.classList.add("hidden");
-        $alienvaultotx.classList.remove("hidden");
-        $polyswarm.classList.add("hidden");
+        $otx.classList.remove("hidden")
 
-        const $api2ResultPulseCount = document.querySelector("#api2-result-alienvaultotx-pulsecount");
-
-        $api2Title.textContent = source;
-        $api2ResultPulseCount.append(apiResponse.pulse_info.count);
+        $otxTitle.textContent = source
+        $otxPulseCount.append(apiResponse.pulse_info.count)
 
     } else if (iocType === "hash") {
-        $abuseipdb.classList.add("hidden");
-        $alienvaultotx.classList.add("hidden");
-        $polyswarm.classList.remove("hidden");
+        $polyswarm.classList.remove("hidden")
 
-        const $api2ResultExtfiletype = document.querySelector("#api2-result-polyswarm-extfiletype");
-        const $api2ResultMalwarefamliy = document.querySelector("#api2-result-polyswarm-malwarefamliy");
+        const { result } = apiResponse
 
-        const { result } = apiResponse;
-
-        $api2Title.textContent = source;
-        $api2ResultExtfiletype.append(result[0].extended_type);
-        $api2ResultMalwarefamliy.append(result[0].metadata[0].tool_metadata.malware_family);
+        $polyswarmTitle.textContent = source
+        $polyswarmExtfiletype.append(result[0].extended_type)
+        $polyswarmMalwarefamliy.append(result[0].metadata[0].tool_metadata.malware_family)
     }
 }
 
 async function handleFormSubmit(e) {
-    const ioc = $input.value;
-    e.preventDefault();
+    const ioc = $input.value
+    e.preventDefault()
 
     // Reset UI
     resetUI()
-    $submitIoC.disabled = true;
-    $submitIoC.textContent = "Analizando...";
+    $submitIoC.disabled = true
+    $submitIoC.textContent = "Analizando..."
 
     try {
         const typeResponse = await fetch(
             `/api/type?ioc=${encodeURIComponent(ioc)}`,
-        );
-        const typeData = await typeResponse.json();
+        )
+        const typeData = await typeResponse.json()
 
         if (typeData.error) {
-            throw new Error(typeData.error);
+            throw new Error(typeData.error)
         }
 
         const analyzeResponse = await fetch(
             `/api/analyze/${typeData.type}?ioc=${encodeURIComponent(ioc)}`,
-        );
-        const analyzeData = await analyzeResponse.json();
+        )
+        const analyzeData = await analyzeResponse.json()
 
         // Process results
-        let api1ResultData = null;
-        let api2ResultData = null;
+        let api1ResultData = null
+        let api2ResultData = null
 
         if (typeData.type === "ip" || typeData.type === "domain") {
-            api1ResultData = analyzeData.virustotal;
+            api1ResultData = analyzeData.virustotal
             api2ResultData =
                 typeData.type === "ip"
                     ? analyzeData.abuseipdb
-                    : analyzeData.otx;
+                    : analyzeData.otx
         } else if (typeData.type === "hash") {
-            api1ResultData = analyzeData.virustotal;
-            api2ResultData = analyzeData.polyswarm;
+            api1ResultData = analyzeData.virustotal
+            api2ResultData = analyzeData.polyswarm
             console.log(analyzeData.polyswarm)
         }
 
-        // Update results
+        resetResults()
         resultsAPI1(api1ResultData, typeData.type)
         resultsAPI2(api2ResultData, typeData.type)
 
-
-
-        $result.classList.remove("hidden");
+        $results.classList.remove("hidden")
     } catch (err) {
-        $errorMsg.textContent =
-            err.message || "An error occurred while analyzing the IoC.";
-        $errorMsg.classList.remove("hidden");
+        const errMsg = err.message || "An error occurred while analyzing the IoC."
+        $errorMsg.textContent = errMsg
+        $errorMsg.classList.remove("hidden")
     } finally {
-        $loader.classList.add("hidden");
-        $submitIoC.disabled = false;
-        $submitIoC.textContent = "Analizar";
+        $loader.classList.add("hidden")
+        $submitIoC.disabled = false
+        $submitIoC.textContent = "Analizar"
     }
 }
 
-$formAnalyzer.addEventListener("submit", handleFormSubmit);
+$formAnalyzer.addEventListener("submit", handleFormSubmit)
