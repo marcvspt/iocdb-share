@@ -1,0 +1,35 @@
+---
+const { apiID, dbSource } = Astro.props;
+---
+
+<div id={dbSource} class="hidden">
+    <p id=`api${apiID}-result-${dbSource}-isp` class="text-gray-300 text-base">
+        <strong>ISP:</strong>
+    </p>
+    <p
+        id=`api${apiID}-result-${dbSource}-countryname`
+        class="text-gray-300 text-base"
+    >
+        <strong>Pais:</strong>
+    </p>
+
+    <p
+        id=`api${apiID}-result-${dbSource}-totalreports`
+        class="text-gray-300 text-base"
+    >
+        <strong>Reportes:</strong>
+    </p>
+
+    <p
+        id=`api${apiID}-result-${dbSource}-confidencescore`
+        class="text-gray-300 text-base"
+    >
+        <strong>Confianza en los reportes:</strong>
+    </p>
+    <p
+        id=`api${apiID}-result-${dbSource}-whitelist`
+        class="text-gray-300 text-base"
+    >
+        <strong>Lista blanca:</strong>
+    </p>
+</div>

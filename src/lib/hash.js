@@ -45,8 +45,6 @@ export async function analyzeHash(hash) {
     const virustotalData = await virustotalResponse.json();
     const polyswarmData = await polyswarmResponse.json()
 
-    console.log(polyswarmData)
-
     return {
         virustotal: {
             source: "VirusTotal",
