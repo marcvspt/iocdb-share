@@ -6,8 +6,12 @@
     <h4 class="mt-4 text-lg font-bold">Información general</h4>
     <ul class="text-gray-300">
         <li>
-            <strong>ISP: </strong>
+            <strong>Proveedor de servicios: </strong>
             <span id=`abuseipdb-isp` class="text-base font-normal"> </span>
+        </li>
+        <li>
+            <strong>¿Qué uso se le da a la IP? </strong>
+            <span id=`abuseipdb-usetype` class="text-base font-normal"> </span>
         </li>
         <li>
             <strong>Pais: </strong>
@@ -15,7 +19,16 @@
             </span>
         </li>
         <li>
-            <strong>Reportes: </strong>
+            <strong>¿Está en lista blanca? </strong>
+            <span id=`abuseipdb-whitelist` class="text-base font-normal">
+            </span>
+        </li>
+        <li>
+            <strong>¿Es un nodo de TOR? </strong>
+            <span id=`abuseipdb-istor` class="text-base font-normal"> </span>
+        </li>
+        <li>
+            <strong>Reportes de la comunidad: </strong>
             <span id=`abuseipdb-totalreports` class="text-base font-normal">
             </span>
         </li>
@@ -24,10 +37,7 @@
             <span id=`abuseipdb-confidencescore` class="text-base font-normal">
             </span>
         </li>
-        <li>
-            <strong>Fidelidad de los reportes: </strong>
-            <span id=`abuseipdb-whitelist` class="text-base font-normal">
-            </span>
-        </li>
     </ul>
+    <h4 class="mt-4 text-lg font-bold">Comentarios de la comunidad</h4>
+    <ul id=`abuseipdb-reports` class="text-gray-300 list-disc"></ul>
 </article>

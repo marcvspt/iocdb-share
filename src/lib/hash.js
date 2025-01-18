@@ -24,15 +24,15 @@ function checkHashType(hash) {
 }
 
 export async function analyzeHash(hash) {
-    const virustotalKey = import.meta.env.VIRUSTOTAL_API_KEY;
-    const polyswarmKey = import.meta.env.POLYSWARM_API_KEY;
+    const virustotalKey = import.meta.env.VIRUSTOTAL_API_KEY
+    const polyswarmKey = import.meta.env.POLYSWARM_API_KEY
 
     const urlVTFilehashInfo = `${API_VT_FILEHASH}/${hash}`
     const virustotalResponse = await fetch(urlVTFilehashInfo, {
         headers: {
             'x-apikey': virustotalKey,
         },
-    });
+    })
 
     const hashType = checkHashType(hash)
     const urlPolyswarmInfo = `${API_POLYSWARM}/${hashType}?hash=${hash}`
@@ -40,10 +40,14 @@ export async function analyzeHash(hash) {
         headers: {
             'Authorization': polyswarmKey,
         },
-    });
+    })
 
-    const virustotalData = await virustotalResponse.json();
-    const polyswarmData = await polyswarmResponse.json()
+    const virustotalData = await virustotalResponse.json()
+
+    let polyswarmData = null;
+    if (polyswarmResponse.status !== 204) {
+        polyswarmData = await polyswarmResponse.json()
+    }
 
     return {
         virustotal: {
@@ -54,6 +58,6 @@ export async function analyzeHash(hash) {
             source: "PolySwarm",
             apiResponse: polyswarmData
         }
-    };
+    }
 }
 

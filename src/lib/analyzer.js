@@ -49,19 +49,24 @@ const $vtHashVotesMalicious = $("#vthash-votes-malicious")
 const $abuseIPDB = $("#abuseipdb")
 const $abuseIPDBTitle = $("#abuseipdb-title")
 const $abuseIPDBISP = $("#abuseipdb-isp")
+const $abuseIPDBUsetype = $("#abuseipdb-usetype")
 const $abuseIPDBCountryName = $("#abuseipdb-countryname")
+const $abuseIPDBWhitelist = $("#abuseipdb-whitelist")
+const $abuseIPDBIstor = $("#abuseipdb-istor")
 const $abuseIPDBTotalReports = $("#abuseipdb-totalreports")
 const $abuseIPDBConfidenceScore = $("#abuseipdb-confidencescore")
-const $abuseIPDBVotesWhitelist = $("#abuseipdb-whitelist")
+const $abuseIPDBReports = $("#abuseipdb-reports")
 
 const $otx = $("#otx")
 const $otxTitle = $("#otx-title")
 const $otxPulseCount = $("#otx-pulsecount")
+const $otxPulseReports = $("#otx-pulsereports")
 
 const $polyswarm = $("#polyswarm")
 const $polyswarmTitle = $("#polyswarm-title")
 const $polyswarmExtfiletype = $("#polyswarm-extfiletype")
 const $polyswarmMalwarefamliy = $("#polyswarm-malwarefamliy")
+const $polyswarmReports = $("#polyswarm-reports")
 
 function resetUI() {
     $errorMsg.classList.add("hidden")
@@ -80,49 +85,48 @@ function resetResults() {
 
 function resultsAPI1(api1Json, iocType) {
     const { source, apiResponse } = api1Json
-    const { data } = apiResponse
+    const { attributes } = apiResponse.data
 
     if (iocType === "ip") {
         $vtIP.classList.remove("hidden")
 
         $vtIPTitle.textContent = source
-        $vtIPReputation.textContent = data.attributes.reputation
-        $vtIPOwner.textContent = data.attributes.as_owner
-        $vtIPCountry.textContent = data.attributes.country
-        $vtIPAnalysisHarmless.textContent = data.attributes.last_analysis_stats.harmless
-        $vtIPAnalysisMalicious.textContent = data.attributes.last_analysis_stats.malicious
-        $vtIPAnalysisSuspicious.textContent = data.attributes.last_analysis_stats.suspicious
-        $vtIPAnalysisUndetected.textContent = data.attributes.last_analysis_stats.undetected
-        $vtIPAnalysisTimeout.textContent = data.attributes.last_analysis_stats.timeout
-        $vtIPVotesHarmless.textContent = data.attributes.total_votes.harmless
-        $vtIPVotesMalicious.textContent = data.attributes.total_votes.malicious
+        $vtIPReputation.textContent = attributes.reputation
+        $vtIPOwner.textContent = attributes.as_owner
+        $vtIPCountry.textContent = attributes.country
+        $vtIPAnalysisHarmless.textContent = attributes.last_analysis_stats.harmless
+        $vtIPAnalysisMalicious.textContent = attributes.last_analysis_stats.malicious
+        $vtIPAnalysisSuspicious.textContent = attributes.last_analysis_stats.suspicious
+        $vtIPAnalysisUndetected.textContent = attributes.last_analysis_stats.undetected
+        $vtIPAnalysisTimeout.textContent = attributes.last_analysis_stats.timeout
+        $vtIPVotesHarmless.textContent = attributes.total_votes.harmless
+        $vtIPVotesMalicious.textContent = attributes.total_votes.malicious
     } else if (iocType === "domain") {
         $vtDomain.classList.remove("hidden")
 
         $vtDomainTitle.textContent = source
-        $vtDomainReputation.textContent = data.attributes.reputation
-        $vtDomainAnalysisHarmless.textContent = data.attributes.last_analysis_stats.harmless
-        $vtDomainAnalysisMalicious.textContent = data.attributes.last_analysis_stats.malicious
-        $vtDomainAnalysisSuspicious.textContent = data.attributes.last_analysis_stats.suspicious
-        $vtDomainAnalysisUndetected.textContent = data.attributes.last_analysis_stats.undetected
-        $vtDomainAnalysisTimeout.textContent = data.attributes.last_analysis_stats.timeout
-        console.log(data.attributes.total_votes)
-        $vtDomainVotesHarmless.textContent = data.attributes.total_votes.harmless
-        $vtDomainVotesMalicious.textContent = data.attributes.total_votes.malicious
+        $vtDomainReputation.textContent = attributes.reputation
+        $vtDomainAnalysisHarmless.textContent = attributes.last_analysis_stats.harmless
+        $vtDomainAnalysisMalicious.textContent = attributes.last_analysis_stats.malicious
+        $vtDomainAnalysisSuspicious.textContent = attributes.last_analysis_stats.suspicious
+        $vtDomainAnalysisUndetected.textContent = attributes.last_analysis_stats.undetected
+        $vtDomainAnalysisTimeout.textContent = attributes.last_analysis_stats.timeout
+        $vtDomainVotesHarmless.textContent = attributes.total_votes.harmless
+        $vtDomainVotesMalicious.textContent = attributes.total_votes.malicious
     } else if (iocType === "hash") {
-        $vtHash.classList.remove("hidden");
+        $vtHash.classList.remove("hidden")
 
         $vtHashTitle.textContent = source
-        $vtHashReputation.textContent = data.attributes.reputation
-        $vtHashTypefile.textContent = data.attributes.trid[0].file_type
-        $vtHashMagicNumber.textContent = data.attributes.magic
-        $vtHashAnalysisHarmless.textContent = data.attributes.last_analysis_stats.harmless
-        $vtHashAnalysisMalicious.textContent = data.attributes.last_analysis_stats.malicious
-        $vtHashAnalysisSuspicious.textContent = data.attributes.last_analysis_stats.suspicious
-        $vtHashAnalysisUndetected.textContent = data.attributes.last_analysis_stats.undetected
-        $vtHashAnalysisTimeout.textContent = data.attributes.last_analysis_stats.timeout
-        $vtHashVotesHarmless.textContent = data.attributes.total_votes.harmless
-        $vtHashVotesMalicious.textContent = data.attributes.total_votes.malicious
+        $vtHashReputation.textContent = attributes.reputation
+        $vtHashTypefile.textContent = attributes.trid[0].file_type
+        $vtHashMagicNumber.textContent = attributes.magic
+        $vtHashAnalysisHarmless.textContent = attributes.last_analysis_stats.harmless
+        $vtHashAnalysisMalicious.textContent = attributes.last_analysis_stats.malicious
+        $vtHashAnalysisSuspicious.textContent = attributes.last_analysis_stats.suspicious
+        $vtHashAnalysisUndetected.textContent = attributes.last_analysis_stats.undetected
+        $vtHashAnalysisTimeout.textContent = attributes.last_analysis_stats.timeout
+        $vtHashVotesHarmless.textContent = attributes.total_votes.harmless
+        $vtHashVotesMalicious.textContent = attributes.total_votes.malicious
     }
 }
 
@@ -130,30 +134,78 @@ function resultsAPI2(api2Json, iocType) {
     const { source, apiResponse } = api2Json
 
     if (iocType === "ip") {
-        $abuseIPDB.classList.remove("hidden")
-
         const { data } = apiResponse
+        const { reports } = data
+
+        $abuseIPDB.classList.remove("hidden")
 
         $abuseIPDBTitle.textContent = source
         $abuseIPDBISP.textContent = data.isp
+        $abuseIPDBUsetype.textContent = data.usageType
         $abuseIPDBCountryName.textContent = data.countryName
+        $abuseIPDBWhitelist.textContent = data.isWhitelisted === true ? "Si" : "No"
+        $abuseIPDBIstor.textContent = data.isTor === true ? "Si" : "No"
         $abuseIPDBTotalReports.textContent = data.totalReports
         $abuseIPDBConfidenceScore.textContent = `${data.abuseConfidenceScore}%`
-        $abuseIPDBVotesWhitelist.textContent = data.isWhitelisted
+
+        reports.forEach(report => {
+            const $reportItem = document.createElement('li')
+            const $commentItem = $reportItem.appendChild(document.createElement('span'))
+
+            const commentItem = report.comment || 'Sin reportes'
+
+            $commentItem.classList.add('text-base', 'font-normal')
+            $commentItem.textContent = commentItem
+            // Agregar el <li> al contenedor UL
+            $abuseIPDBReports.appendChild($reportItem)
+        })
+
     } else if (iocType === "domain") {
+        const { pulses } = apiResponse.pulse_info
+
         $otx.classList.remove("hidden")
 
         $otxTitle.textContent = source
         $otxPulseCount.append(apiResponse.pulse_info.count)
+        pulses.forEach(pulse => {
+            const $pulseItem = document.createElement('li')
+            const $titleItem = $pulseItem.appendChild(document.createElement('strong'))
+
+            const pulseName = pulse.name || 'Sin nombre'
+            const pulseDescription = pulse.description || 'Sin descripción'
+
+            $titleItem.textContent = `${pulseName}: `
+            const $contentItem = $titleItem.appendChild(document.createElement('span'))
+            $contentItem.classList.add('text-base', 'font-normal')
+            $contentItem.textContent = pulseDescription
+            $otxPulseReports.appendChild($pulseItem)
+
+        })
 
     } else if (iocType === "hash") {
+        const { result } = apiResponse
+        const { assertions } = result[0]
+        console.log(assertions)
+
         $polyswarm.classList.remove("hidden")
 
-        const { result } = apiResponse
-
         $polyswarmTitle.textContent = source
-        $polyswarmExtfiletype.append(result[0].extended_type)
-        $polyswarmMalwarefamliy.append(result[0].metadata[0].tool_metadata.malware_family)
+        $polyswarmExtfiletype.textContent = result[0].extended_type
+        $polyswarmMalwarefamliy.textContent = result[0].metadata[0].tool_metadata.malware_family
+
+        assertions.forEach(assertion => {
+            const $assertionItem = document.createElement('li')
+            const $titleItem = $assertionItem.appendChild(document.createElement('strong'))
+
+            const assertionAuthorName = assertion.author_name || 'Sin nombre'
+            const assertionVerdict = assertion.verdict ? 'Malicioso' : 'Inofensivo'
+
+            $titleItem.textContent = `${assertionAuthorName}: `
+            const $contentItem = $titleItem.appendChild(document.createElement('span'))
+            $contentItem.classList.add('text-base', 'font-normal')
+            $contentItem.textContent = assertionVerdict
+            $polyswarmReports.appendChild($assertionItem)
+        })
     }
 }
 
@@ -194,7 +246,6 @@ async function handleFormSubmit(e) {
         } else if (typeData.type === "hash") {
             api1ResultData = analyzeData.virustotal
             api2ResultData = analyzeData.polyswarm
-            console.log(analyzeData.polyswarm)
         }
 
         resetResults()
