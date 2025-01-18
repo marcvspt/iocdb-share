@@ -85,12 +85,20 @@ function resetResults() {
 
 function resultsAPI1(api1Json, iocType) {
     const { source, apiResponse } = api1Json
+
+    if (apiResponse.error) {
+        $vtHash.classList.remove("hidden")
+        $vtHash.textContent = "No hay información"
+        return
+    }
+
     const { attributes } = apiResponse.data
+
+    $vtIPTitle.textContent = source
 
     if (iocType === "ip") {
         $vtIP.classList.remove("hidden")
 
-        $vtIPTitle.textContent = source
         $vtIPReputation.textContent = attributes.reputation
         $vtIPOwner.textContent = attributes.as_owner
         $vtIPCountry.textContent = attributes.country
@@ -134,10 +142,15 @@ function resultsAPI2(api2Json, iocType) {
     const { source, apiResponse } = api2Json
 
     if (iocType === "ip") {
+        $abuseIPDB.classList.remove("hidden")
+
+        if (apiResponse === null) {
+            $abuseIPDB.textContent = "No hay información"
+            return
+        }
+
         const { data } = apiResponse
         const { reports } = data
-
-        $abuseIPDB.classList.remove("hidden")
 
         $abuseIPDBTitle.textContent = source
         $abuseIPDBISP.textContent = data.isp
@@ -162,9 +175,14 @@ function resultsAPI2(api2Json, iocType) {
         })
 
     } else if (iocType === "domain") {
-        const { pulses } = apiResponse.pulse_info
-
         $otx.classList.remove("hidden")
+
+        if (apiResponse.error) {
+            $otx.textContent = "No hay información"
+            return
+        }
+
+        const { pulses } = apiResponse.pulse_info
 
         $otxTitle.textContent = source
         $otxPulseCount.textContent = apiResponse.pulse_info.count
@@ -186,13 +204,16 @@ function resultsAPI2(api2Json, iocType) {
         })
 
     } else if (iocType === "hash") {
-        const { result } = apiResponse
-        const { assertions } = result[0]
-        console.log(assertions)
-
         $polyswarm.classList.remove("hidden")
 
-        $polyswarmTitle.textContent = source
+        if (apiResponse === null) {
+            $polyswarm.textContent = "No hay información"
+            return
+        }
+
+        const { result } = apiResponse
+        const { assertions } = result[0]
+
         $polyswarmExtfiletype.textContent = result[0].extended_type
         $polyswarmMalwarefamliy.textContent = result[0].metadata[0].tool_metadata.malware_family
 
