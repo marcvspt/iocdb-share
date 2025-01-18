@@ -30,7 +30,7 @@ export async function analyzeHash(hash) {
     const urlVTFilehashInfo = `${API_VT_FILEHASH}/${hash}`
     const virustotalResponse = await fetch(urlVTFilehashInfo, {
         headers: {
-            'x-apikey': virustotalKey,
+            "x-apikey": virustotalKey,
         },
     })
 
@@ -38,7 +38,7 @@ export async function analyzeHash(hash) {
     const urlPolyswarmInfo = `${API_POLYSWARM}/${hashType}?hash=${hash}`
     const polyswarmResponse = await fetch(urlPolyswarmInfo, {
         headers: {
-            'Authorization': polyswarmKey,
+            "Authorization": polyswarmKey,
         },
     })
 

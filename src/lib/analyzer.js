@@ -148,13 +148,14 @@ function resultsAPI2(api2Json, iocType) {
         $abuseIPDBTotalReports.textContent = data.totalReports
         $abuseIPDBConfidenceScore.textContent = `${data.abuseConfidenceScore}%`
 
+        $abuseIPDBReports.textContent = ""
         reports.forEach(report => {
-            const $reportItem = document.createElement('li')
-            const $commentItem = $reportItem.appendChild(document.createElement('span'))
+            const $reportItem = document.createElement("li")
+            const $commentItem = $reportItem.appendChild(document.createElement("span"))
 
-            const commentItem = report.comment || 'Sin reportes'
+            const commentItem = report.comment || "Sin reportes"
 
-            $commentItem.classList.add('text-base', 'font-normal')
+            $commentItem.classList.add("text-base", "font-normal")
             $commentItem.textContent = commentItem
             // Agregar el <li> al contenedor UL
             $abuseIPDBReports.appendChild($reportItem)
@@ -166,17 +167,19 @@ function resultsAPI2(api2Json, iocType) {
         $otx.classList.remove("hidden")
 
         $otxTitle.textContent = source
-        $otxPulseCount.append(apiResponse.pulse_info.count)
-        pulses.forEach(pulse => {
-            const $pulseItem = document.createElement('li')
-            const $titleItem = $pulseItem.appendChild(document.createElement('strong'))
+        $otxPulseCount.textContent = apiResponse.pulse_info.count
 
-            const pulseName = pulse.name || 'Sin nombre'
-            const pulseDescription = pulse.description || 'Sin descripción'
+        $otxPulseReports.textContent = ""
+        pulses.forEach(pulse => {
+            const $pulseItem = document.createElement("li")
+            const $titleItem = $pulseItem.appendChild(document.createElement("strong"))
+
+            const pulseName = pulse.name || "Sin nombre"
+            const pulseDescription = pulse.description || "Sin descripción"
 
             $titleItem.textContent = `${pulseName}: `
-            const $contentItem = $titleItem.appendChild(document.createElement('span'))
-            $contentItem.classList.add('text-base', 'font-normal')
+            const $contentItem = $titleItem.appendChild(document.createElement("span"))
+            $contentItem.classList.add("text-base", "font-normal")
             $contentItem.textContent = pulseDescription
             $otxPulseReports.appendChild($pulseItem)
 
@@ -193,16 +196,17 @@ function resultsAPI2(api2Json, iocType) {
         $polyswarmExtfiletype.textContent = result[0].extended_type
         $polyswarmMalwarefamliy.textContent = result[0].metadata[0].tool_metadata.malware_family
 
+        $polyswarmReports.textContent = ""
         assertions.forEach(assertion => {
-            const $assertionItem = document.createElement('li')
-            const $titleItem = $assertionItem.appendChild(document.createElement('strong'))
+            const $assertionItem = document.createElement("li")
+            const $titleItem = $assertionItem.appendChild(document.createElement("strong"))
 
-            const assertionAuthorName = assertion.author_name || 'Sin nombre'
-            const assertionVerdict = assertion.verdict ? 'Malicioso' : 'Inofensivo'
+            const assertionAuthorName = assertion.author_name || "Sin nombre"
+            const assertionVerdict = assertion.verdict ? "Malicioso" : "Inofensivo"
 
             $titleItem.textContent = `${assertionAuthorName}: `
-            const $contentItem = $titleItem.appendChild(document.createElement('span'))
-            $contentItem.classList.add('text-base', 'font-normal')
+            const $contentItem = $titleItem.appendChild(document.createElement("span"))
+            $contentItem.classList.add("text-base", "font-normal")
             $contentItem.textContent = assertionVerdict
             $polyswarmReports.appendChild($assertionItem)
         })

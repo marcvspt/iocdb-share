@@ -1,35 +1,35 @@
 ---
-import { analyzeIP } from "@/lib/ip"
-import { analyzeDomain } from "@/lib/domain"
-import { analyzeHash } from "@/lib/hash"
+import { analyzeIP } from "@/lib/ip";
+import { analyzeDomain } from "@/lib/domain";
+import { analyzeHash } from "@/lib/hash";
 
-const { analyze } = Astro.params
-const ioc = Astro.url.searchParams.get("ioc")
+const { analyze } = Astro.params;
+const ioc = Astro.url.searchParams.get("ioc");
 
 if (!ioc) {
     return new Response(JSON.stringify({ error: "Missing IoC parameter" }), {
         status: 400,
-    })
+    });
 }
 
-let result
+let result;
 
 switch (analyze) {
     case "ip":
-        result = await analyzeIP(ioc)
-        break
+        result = await analyzeIP(ioc);
+        break;
     case "domain":
-        result = await analyzeDomain(ioc)
-        break
+        result = await analyzeDomain(ioc);
+        break;
     case "hash":
-        result = await analyzeHash(ioc)
-        break
+        result = await analyzeHash(ioc);
+        break;
     default:
         return new Response(
             JSON.stringify({ error: "Invalid analysis type" }),
             { status: 400 },
-        )
+        );
 }
 
-return new Response(JSON.stringify(result))
+return new Response(JSON.stringify(result));
 ---

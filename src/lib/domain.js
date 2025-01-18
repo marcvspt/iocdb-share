@@ -9,14 +9,14 @@ export async function analyzeDomain(domain) {
     const urlVTDomainInfo = `${API_VT_DOMAIN}/${domain}`
     const virustotalResponse = await fetch(urlVTDomainInfo, {
         headers: {
-            'x-apikey': virustotalKey,
+            "x-apikey": virustotalKey,
         },
     })
 
     const urlOTXDomainInfo = `${API_OTX_DOMAIN}/${domain}/general`
     const otxResponse = await fetch(urlOTXDomainInfo, {
         headers: {
-            'X-OTX-API-KEY': otxKey,
+            "X-OTX-API-KEY": otxKey,
         },
     })
 
