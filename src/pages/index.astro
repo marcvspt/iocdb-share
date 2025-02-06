@@ -1,7 +1,7 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-import IoCAnalyzer from "@/components/IoCAnalyzer.astro";
-import IoCResults from "@/components/IoCResults.astro";
+import Layout from "@/layouts/Layout.astro"
+import IoCAnalyzer from "@/components/IoCAnalyzer.astro"
+import IoCResults from "@/components/IoCResults.astro"
 ---
 
 <Layout title="Bienvenidos a IoCDB Share">
@@ -19,6 +19,8 @@ import IoCResults from "@/components/IoCResults.astro";
 		<IoCAnalyzer />
 		<IoCResults />
 
-		<script src="@/lib/analyzer.js"></script>
+		<script>
+			import "@/scripts/results.js"
+		</script>
 	</main>
 </Layout>

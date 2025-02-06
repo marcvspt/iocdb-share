@@ -5,25 +5,22 @@ export async function analyzeDomain(domain) {
     const virustotalKey = import.meta.env.VIRUSTOTAL_API_KEY
     const otxKey = import.meta.env.OTX_API_KEY
 
+    const [virustotalResponse, otxResponse] = await Promise.all([
+        fetch(`${API_VT_DOMAIN}/${domain}`, {
+            headers: { "x-apikey": virustotalKey }
+        }),
+        fetch(`${API_OTX_DOMAIN}/${domain}/general`, {
+            headers: { "X-OTX-API-KEY": otxKey }
+        })
+    ])
 
-    const urlVTDomainInfo = `${API_VT_DOMAIN}/${domain}`
-    const virustotalResponse = await fetch(urlVTDomainInfo, {
-        headers: {
-            "x-apikey": virustotalKey,
-        },
-    })
-
-    const urlOTXDomainInfo = `${API_OTX_DOMAIN}/${domain}/general`
-    const otxResponse = await fetch(urlOTXDomainInfo, {
-        headers: {
-            "X-OTX-API-KEY": otxKey,
-        },
-    })
-
-    const virustotalData = await virustotalResponse.json()
-    const otxData = await otxResponse.json()
+    const [virustotalData, otxData] = await Promise.all([
+        virustotalResponse.json(),
+        otxResponse.json()
+    ])
 
     return {
+        type: "domain",
         virustotal: {
             source: "VirusTotal",
             apiResponse: virustotalData
@@ -34,4 +31,3 @@ export async function analyzeDomain(domain) {
         }
     }
 }
-

@@ -214,6 +214,7 @@ function resultsAPI2(api2Json, iocType) {
         const { result } = apiResponse
         const { assertions } = result[0]
 
+        $polyswarmTitle.textContent = source
         $polyswarmExtfiletype.textContent = result[0].extended_type
         $polyswarmMalwarefamliy.textContent = result[0].metadata[0].tool_metadata.malware_family
 
@@ -238,44 +239,26 @@ async function handleFormSubmit(e) {
     const ioc = $input.value
     e.preventDefault()
 
-    // Reset UI
     resetUI()
     $submitIoC.disabled = true
     $submitIoC.textContent = "Analizando..."
 
     try {
-        const typeResponse = await fetch(
-            `/api/type?ioc=${encodeURIComponent(ioc)}`,
-        )
-        const typeData = await typeResponse.json()
-
-        if (typeData.error) {
-            throw new Error(typeData.error)
-        }
-
-        const analyzeResponse = await fetch(
-            `/api/analyze/${typeData.type}?ioc=${encodeURIComponent(ioc)}`,
-        )
+        const analyzeResponse = await fetch(`/api/analyze?ioc=${encodeURIComponent(ioc)}`)
         const analyzeData = await analyzeResponse.json()
 
-        // Process results
-        let api1ResultData = null
-        let api2ResultData = null
-
-        if (typeData.type === "ip" || typeData.type === "domain") {
-            api1ResultData = analyzeData.virustotal
-            api2ResultData =
-                typeData.type === "ip"
-                    ? analyzeData.abuseipdb
-                    : analyzeData.otx
-        } else if (typeData.type === "hash") {
-            api1ResultData = analyzeData.virustotal
-            api2ResultData = analyzeData.polyswarm
+        if (analyzeData.error) {
+            throw new Error(analyzeData.error)
         }
 
         resetResults()
-        resultsAPI1(api1ResultData, typeData.type)
-        resultsAPI2(api2ResultData, typeData.type)
+        resultsAPI1(analyzeData.virustotal, analyzeData.type)
+
+        const secondaryAPI = analyzeData.type === 'ip' ? analyzeData.abuseipdb :
+            analyzeData.type === 'domain' ? analyzeData.otx :
+                analyzeData.polyswarm
+
+        resultsAPI2(secondaryAPI, analyzeData.type)
 
         $results.classList.remove("hidden")
     } catch (err) {
