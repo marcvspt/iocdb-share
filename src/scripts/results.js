@@ -236,40 +236,40 @@ function resultsAPI2(api2Json, iocType) {
 }
 
 async function handleFormSubmit(e) {
-    const ioc = $input.value
-    e.preventDefault()
+    const ioc = $input.value;
+    e.preventDefault();
 
-    resetUI()
-    $submitIoC.disabled = true
-    $submitIoC.textContent = "Analizando..."
+    resetUI();
+    $submitIoC.disabled = true;
+    $submitIoC.textContent = "Analizando...";
 
     try {
-        const analyzeResponse = await fetch(`/api/analyze?ioc=${encodeURIComponent(ioc)}`)
-        const analyzeData = await analyzeResponse.json()
+        const analyzeResponse = await fetch(`/api/analyze?ioc=${encodeURIComponent(ioc)}`);
+        const analyzeData = await analyzeResponse.json();
 
         if (analyzeData.error) {
-            throw new Error(analyzeData.error)
+            throw new Error(analyzeData.error);
         }
 
-        resetResults()
-        resultsAPI1(analyzeData.virustotal, analyzeData.type)
+        resetResults();
+        resultsAPI1(analyzeData.virustotal, analyzeData.type);
 
         const secondaryAPI = analyzeData.type === 'ip' ? analyzeData.abuseipdb :
             analyzeData.type === 'domain' ? analyzeData.otx :
-                analyzeData.polyswarm
+                analyzeData.polyswarm;
 
-        resultsAPI2(secondaryAPI, analyzeData.type)
+        resultsAPI2(secondaryAPI, analyzeData.type);
 
-        $results.classList.remove("hidden")
+        $results.classList.remove("hidden");
     } catch (err) {
-        const errMsg = err.message || "An error occurred while analyzing the IoC."
-        $errorMsg.textContent = errMsg
-        $errorMsg.classList.remove("hidden")
+        const errMsg = err.message || "An error occurred while analyzing the IoC.";
+        $errorMsg.textContent = errMsg;
+        $errorMsg.classList.remove("hidden");
     } finally {
-        $loader.classList.add("hidden")
-        $submitIoC.disabled = false
-        $submitIoC.textContent = "Analizar"
+        $loader.classList.add("hidden");
+        $submitIoC.disabled = false;
+        $submitIoC.textContent = "Analizar";
     }
 }
 
-$formAnalyzer.addEventListener("submit", handleFormSubmit)
+$formAnalyzer.addEventListener("submit", handleFormSubmit);
