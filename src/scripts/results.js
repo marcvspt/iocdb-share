@@ -214,6 +214,7 @@ function resultsAPI2(api2Json, iocType) {
         const { result } = apiResponse
         const { assertions } = result[0]
 
+        $polyswarmTitle.textContent = source
         $polyswarmExtfiletype.textContent = result[0].extended_type
         $polyswarmMalwarefamliy.textContent = result[0].metadata[0].tool_metadata.malware_family
 
@@ -235,58 +236,40 @@ function resultsAPI2(api2Json, iocType) {
 }
 
 async function handleFormSubmit(e) {
-    const ioc = $input.value
-    e.preventDefault()
+    const ioc = $input.value;
+    e.preventDefault();
 
-    // Reset UI
-    resetUI()
-    $submitIoC.disabled = true
-    $submitIoC.textContent = "Analizando..."
+    resetUI();
+    $submitIoC.disabled = true;
+    $submitIoC.textContent = "Analizando...";
 
     try {
-        const typeResponse = await fetch(
-            `/api/type?ioc=${encodeURIComponent(ioc)}`,
-        )
-        const typeData = await typeResponse.json()
+        const analyzeResponse = await fetch(`/api/analyze?ioc=${encodeURIComponent(ioc)}`);
+        const analyzeData = await analyzeResponse.json();
 
-        if (typeData.error) {
-            throw new Error(typeData.error)
+        if (analyzeData.error) {
+            throw new Error(analyzeData.error);
         }
 
-        const analyzeResponse = await fetch(
-            `/api/analyze/${typeData.type}?ioc=${encodeURIComponent(ioc)}`,
-        )
-        const analyzeData = await analyzeResponse.json()
+        resetResults();
+        resultsAPI1(analyzeData.virustotal, analyzeData.type);
 
-        // Process results
-        let api1ResultData = null
-        let api2ResultData = null
+        const secondaryAPI = analyzeData.type === 'ip' ? analyzeData.abuseipdb :
+            analyzeData.type === 'domain' ? analyzeData.otx :
+                analyzeData.polyswarm;
 
-        if (typeData.type === "ip" || typeData.type === "domain") {
-            api1ResultData = analyzeData.virustotal
-            api2ResultData =
-                typeData.type === "ip"
-                    ? analyzeData.abuseipdb
-                    : analyzeData.otx
-        } else if (typeData.type === "hash") {
-            api1ResultData = analyzeData.virustotal
-            api2ResultData = analyzeData.polyswarm
-        }
+        resultsAPI2(secondaryAPI, analyzeData.type);
 
-        resetResults()
-        resultsAPI1(api1ResultData, typeData.type)
-        resultsAPI2(api2ResultData, typeData.type)
-
-        $results.classList.remove("hidden")
+        $results.classList.remove("hidden");
     } catch (err) {
-        const errMsg = err.message || "An error occurred while analyzing the IoC."
-        $errorMsg.textContent = errMsg
-        $errorMsg.classList.remove("hidden")
+        const errMsg = err.message || "An error occurred while analyzing the IoC.";
+        $errorMsg.textContent = errMsg;
+        $errorMsg.classList.remove("hidden");
     } finally {
-        $loader.classList.add("hidden")
-        $submitIoC.disabled = false
-        $submitIoC.textContent = "Analizar"
+        $loader.classList.add("hidden");
+        $submitIoC.disabled = false;
+        $submitIoC.textContent = "Analizar";
     }
 }
 
-$formAnalyzer.addEventListener("submit", handleFormSubmit)
+$formAnalyzer.addEventListener("submit", handleFormSubmit);

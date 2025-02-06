@@ -16,8 +16,11 @@
       "@/components/*": [
         "src/components/*"
       ],
-      "@/lib/*": [
-        "src/lib/*"
+      "@/scripts/*": [
+        "src/scripts/*"
+      ],
+      "@/styles/*": [
+        "src/styles/*"
       ],
     }
   }

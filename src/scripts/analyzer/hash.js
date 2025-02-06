@@ -11,45 +11,39 @@ function checkHashType(hash) {
     if (/^[a-f0-9]{32}$/i.test(hash)) {
         return VALID_HASH_TYPES.MD5
     }
-
     if (/^[a-f0-9]{40}$/i.test(hash)) {
         return VALID_HASH_TYPES.SHA1
     }
-
     if (/^[a-f0-9]{64}$/i.test(hash)) {
         return VALID_HASH_TYPES.SHA256
     }
-
     return "N/A"
 }
+
 
 export async function analyzeHash(hash) {
     const virustotalKey = import.meta.env.VIRUSTOTAL_API_KEY
     const polyswarmKey = import.meta.env.POLYSWARM_API_KEY
-
-    const urlVTFilehashInfo = `${API_VT_FILEHASH}/${hash}`
-    const virustotalResponse = await fetch(urlVTFilehashInfo, {
-        headers: {
-            "x-apikey": virustotalKey,
-        },
-    })
-
     const hashType = checkHashType(hash)
-    const urlPolyswarmInfo = `${API_POLYSWARM}/${hashType}?hash=${hash}`
-    const polyswarmResponse = await fetch(urlPolyswarmInfo, {
-        headers: {
-            "Authorization": polyswarmKey,
-        },
-    })
+
+    const [virustotalResponse, polyswarmResponse] = await Promise.all([
+        fetch(`${API_VT_FILEHASH}/${hash}`, {
+            headers: { "x-apikey": virustotalKey }
+        }),
+        fetch(`${API_POLYSWARM}/${hashType}?hash=${hash}`, {
+            headers: { "Authorization": polyswarmKey }
+        })
+    ])
 
     const virustotalData = await virustotalResponse.json()
+    let polyswarmData = null
 
-    let polyswarmData = null;
     if (polyswarmResponse.status !== 204) {
         polyswarmData = await polyswarmResponse.json()
     }
 
     return {
+        type: "hash",
         virustotal: {
             source: "VirusTotal",
             apiResponse: virustotalData
@@ -60,4 +54,3 @@ export async function analyzeHash(hash) {
         }
     }
 }
-
